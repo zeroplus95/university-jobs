@@ -42,41 +42,124 @@
             opacity: 0.9;
         }
 
-        .filter-bar {
+        /* ========= 筛选面板 ========= */
+        .filter-panel {
             background: white;
             border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 25px;
+            margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .filter-panel .panel-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-panel .panel-title i {
+            color: #667eea;
+        }
+
+        .filter-row {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .filter-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-row .row-label {
+            min-width: 80px;
+            font-weight: 600;
+            color: #555;
+            padding-top: 8px;
+            font-size: 0.95em;
+            flex-shrink: 0;
+        }
+
+        .filter-row .row-label i {
+            margin-right: 4px;
+            color: #667eea;
+        }
+
+        .filter-options {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
+            gap: 8px;
+            flex: 1;
         }
 
         .filter-btn {
-            padding: 12px 30px;
-            border: 2px solid #667eea;
-            border-radius: 25px;
+            padding: 8px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
             background: white;
-            color: #667eea;
-            font-size: 1em;
+            color: #555;
+            font-size: 0.9em;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 500;
         }
 
         .filter-btn:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-1px);
         }
 
         .filter-btn.active {
             background: #667eea;
             color: white;
+            border-color: #667eea;
         }
 
+        .filter-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid #eee;
+            gap: 10px;
+        }
+
+        .filter-actions .reset-btn {
+            padding: 8px 24px;
+            border: 2px solid #ff6b6b;
+            border-radius: 20px;
+            background: white;
+            color: #ff6b6b;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-actions .reset-btn:hover {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .filter-result-info {
+            margin-left: auto;
+            font-size: 0.9em;
+            color: #999;
+            padding-top: 8px;
+        }
+
+        .filter-result-info span {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* ========= 统计 ========= */
         .stats {
             display: flex;
             justify-content: center;
@@ -105,6 +188,7 @@
             margin-top: 5px;
         }
 
+        /* ========= 岗位卡片 ========= */
         .jobs-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -161,6 +245,26 @@
         .school-name i {
             color: #667eea;
         }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.78em;
+            font-weight: 500;
+        }
+
+        .tag-region { background: #e8eaf6; color: #3949ab; }
+        .tag-education { background: #fff3e0; color: #e65100; }
+        .tag-hire-type { background: #e8f5e9; color: #2e7d32; }
+        .tag-position { background: #fce4ec; color: #c62828; }
 
         .job-info {
             margin-bottom: 10px;
@@ -240,7 +344,7 @@
             padding: 60px 20px;
             background: white;
             border-radius: 15px;
-            margin-top: 20px;
+            grid-column: 1 / -1;
         }
 
         .empty-state i {
@@ -267,12 +371,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .filter-bar {
+            .filter-row {
                 flex-direction: column;
+                gap: 6px;
             }
 
-            .filter-btn {
-                width: 100%;
+            .filter-row .row-label {
+                padding-top: 0;
             }
 
             .stats {
@@ -289,19 +394,67 @@
             <div class="update-time"><i class="fas fa-clock"></i> 最后更新：2026年5月9日 10:00</div>
         </div>
 
-        <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">
-                <i class="fas fa-list"></i> 全部岗位
-            </button>
-            <button class="filter-btn" data-filter="事业编制">
-                <i class="fas fa-id-card"></i> 事业编制
-            </button>
-            <button class="filter-btn" data-filter="聘用制">
-                <i class="fas fa-file-contract"></i> 聘用制
-            </button>
-            <button class="filter-btn" data-filter="合同制">
-                <i class="fas fa-handshake"></i> 合同制
-            </button>
+        <!-- ====== 四维筛选面板 ====== -->
+        <div class="filter-panel">
+            <div class="panel-title"><i class="fas fa-filter"></i> 筛选条件</div>
+
+            <!-- 地区 -->
+            <div class="filter-row">
+                <div class="row-label"><i class="fas fa-map-marker-alt"></i> 地区</div>
+                <div class="filter-options" data-dimension="region">
+                    <button class="filter-btn active" data-value="all">全部</button>
+                    <button class="filter-btn" data-value="华东">华东</button>
+                    <button class="filter-btn" data-value="华北">华北</button>
+                    <button class="filter-btn" data-value="华南">华南</button>
+                    <button class="filter-btn" data-value="华中">华中</button>
+                    <button class="filter-btn" data-value="西南">西南</button>
+                    <button class="filter-btn" data-value="西北">西北</button>
+                    <button class="filter-btn" data-value="东北">东北</button>
+                </div>
+            </div>
+
+            <!-- 学历要求 -->
+            <div class="filter-row">
+                <div class="row-label"><i class="fas fa-graduation-cap"></i> 学历</div>
+                <div class="filter-options" data-dimension="education">
+                    <button class="filter-btn active" data-value="all">全部</button>
+                    <button class="filter-btn" data-value="本科">本科</button>
+                    <button class="filter-btn" data-value="硕士">硕士</button>
+                    <button class="filter-btn" data-value="博士">博士</button>
+                    <button class="filter-btn" data-value="不限">不限</button>
+                </div>
+            </div>
+
+            <!-- 聘用方式 -->
+            <div class="filter-row">
+                <div class="row-label"><i class="fas fa-file-contract"></i> 聘用</div>
+                <div class="filter-options" data-dimension="hire-type">
+                    <button class="filter-btn active" data-value="all">全部</button>
+                    <button class="filter-btn" data-value="事业编制">事业编制</button>
+                    <button class="filter-btn" data-value="聘用制">聘用制</button>
+                    <button class="filter-btn" data-value="合同制">合同制</button>
+                    <button class="filter-btn" data-value="人事代理">人事代理</button>
+                </div>
+            </div>
+
+            <!-- 岗位类别 -->
+            <div class="filter-row">
+                <div class="row-label"><i class="fas fa-briefcase"></i> 岗位</div>
+                <div class="filter-options" data-dimension="position">
+                    <button class="filter-btn active" data-value="all">全部</button>
+                    <button class="filter-btn" data-value="行政管理">行政管理</button>
+                    <button class="filter-btn" data-value="教学辅助">教学辅助</button>
+                    <button class="filter-btn" data-value="科研辅助">科研辅助</button>
+                    <button class="filter-btn" data-value="学生工作">学生工作</button>
+                    <button class="filter-btn" data-value="图书档案">图书档案</button>
+                    <button class="filter-btn" data-value="信息技术">信息技术</button>
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <div class="filter-result-info">当前筛选结果：<span id="filter-count">2</span> 个岗位</div>
+                <button class="reset-btn" id="reset-filters"><i class="fas fa-undo"></i> 重置筛选</button>
+            </div>
         </div>
 
         <div class="stats">
@@ -321,9 +474,17 @@
 
         <div class="jobs-container" id="jobs-container">
             <!-- 南京大学 - 事业编制 - 今天截止（紧急） -->
-            <div class="job-card urgent" data-employment="事业编制" data-urgency="urgent">
+            <div class="job-card urgent"
+                 data-region="华东" data-education="硕士" data-hire-type="事业编制" data-position="行政管理"
+                 data-urgency="urgent">
                 <div class="school-name">
                     <i class="fas fa-university"></i> 南京大学
+                </div>
+                <div class="tag-row">
+                    <span class="tag tag-region">华东</span>
+                    <span class="tag tag-education">硕士</span>
+                    <span class="tag tag-hire-type">事业编制</span>
+                    <span class="tag tag-position">行政管理</span>
                 </div>
                 <div class="job-info">
                     <i class="fas fa-briefcase"></i>
@@ -331,7 +492,7 @@
                 </div>
                 <div class="job-info">
                     <i class="fas fa-graduation-cap"></i>
-                    <div><span class="label">学历要求：</span><span class="value">详见岗位表</span></div>
+                    <div><span class="label">学历要求：</span><span class="value">硕士及以上</span></div>
                 </div>
                 <div class="job-info">
                     <i class="fas fa-users"></i>
@@ -358,9 +519,17 @@
             </div>
 
             <!-- 南通大学 - 事业编制 - 长期招聘 -->
-            <div class="job-card long-term" data-employment="事业编制" data-urgency="long-term">
+            <div class="job-card long-term"
+                 data-region="华东" data-education="本科" data-hire-type="事业编制" data-position="行政管理"
+                 data-urgency="long-term">
                 <div class="school-name">
                     <i class="fas fa-university"></i> 南通大学
+                </div>
+                <div class="tag-row">
+                    <span class="tag tag-region">华东</span>
+                    <span class="tag tag-education">本科</span>
+                    <span class="tag tag-hire-type">事业编制</span>
+                    <span class="tag tag-position">行政管理</span>
                 </div>
                 <div class="job-info">
                     <i class="fas fa-briefcase"></i>
@@ -368,7 +537,7 @@
                 </div>
                 <div class="job-info">
                     <i class="fas fa-graduation-cap"></i>
-                    <div><span class="label">学历要求：</span><span class="value">详见岗位表附件</span></div>
+                    <div><span class="label">学历要求：</span><span class="value">本科及以上（详见岗位表附件）</span></div>
                 </div>
                 <div class="job-info">
                     <i class="fas fa-users"></i>
@@ -395,6 +564,13 @@
             </div>
         </div>
 
+        <!-- 无结果时的空状态 -->
+        <div class="empty-state" id="empty-state" style="display:none;">
+            <i class="fas fa-search"></i>
+            <h3>没有匹配的岗位</h3>
+            <p>试试调整筛选条件？</p>
+        </div>
+
         <div class="footer">
             <p><i class="fas fa-info-circle"></i> 信息来源：各高校人事处、高校人才网等 | 本页面每日自动更新</p>
             <p style="margin-top: 10px; font-size: 0.9em;">仅展示仍在报名中、未截止的岗位</p>
@@ -402,51 +578,96 @@
     </div>
 
     <script>
-        // 筛选功能
-        const filterBtns = document.querySelectorAll('.filter-btn');
+        // ====== 四维AND筛选逻辑 ======
+        const dimensions = ['region', 'education', 'hire-type', 'position'];
+        const activeFilters = {
+            region: 'all',
+            education: 'all',
+            'hire-type': 'all',
+            position: 'all'
+        };
+
         const jobCards = document.querySelectorAll('.job-card');
+        const emptyState = document.getElementById('empty-state');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // 更新按钮状态
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        // 绑定筛选按钮点击
+        dimensions.forEach(dim => {
+            const optionGroup = document.querySelector(`.filter-options[data-dimension="${dim}"]`);
+            if (!optionGroup) return;
+            const btns = optionGroup.querySelectorAll('.filter-btn');
 
-                // 筛选岗位卡片
-                const filter = btn.dataset.filter;
-                let visibleCount = 0;
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 更新同组按钮状态
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
 
-                jobCards.forEach(card => {
-                    if (filter === 'all' || card.dataset.employment === filter) {
-                        card.style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    // 记录当前选中
+                    activeFilters[dim] = btn.dataset.value;
+
+                    // 执行筛选
+                    applyFilters();
                 });
-
-                // 更新统计
-                if (filter === 'all') {
-                    document.getElementById('total-jobs').textContent = '2';
-                } else {
-                    const count = document.querySelectorAll(`.job-card[data-employment="${filter}"]`).length;
-                    document.getElementById('total-jobs').textContent = count;
-                }
             });
         });
 
-        // 计算剩余天数并更新紧急状态
-        function updateUrgency() {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
+        // 重置按钮
+        document.getElementById('reset-filters').addEventListener('click', () => {
+            dimensions.forEach(dim => {
+                activeFilters[dim] = 'all';
+                const optionGroup = document.querySelector(`.filter-options[data-dimension="${dim}"]`);
+                if (!optionGroup) return;
+                const btns = optionGroup.querySelectorAll('.filter-btn');
+                btns.forEach(b => b.classList.remove('active'));
+                btns[0].classList.add('active'); // "全部"按钮
+            });
+            applyFilters();
+        });
+
+        function applyFilters() {
+            let visibleCount = 0;
+            let urgentCount = 0;
+            let longTermCount = 0;
 
             jobCards.forEach(card => {
-                const deadlineText = card.querySelector('.job-info .value').textContent;
-                // 这里可以添加更精确的日期计算逻辑
+                let show = true;
+
+                dimensions.forEach(dim => {
+                    const filterVal = activeFilters[dim];
+                    if (filterVal === 'all') return;
+
+                    // 支持多值：data-* 可以用逗号分隔多个值
+                    const cardVal = card.dataset[dim];
+                    if (!cardVal) { show = false; return; }
+
+                    const cardVals = cardVal.split(',').map(v => v.trim());
+                    if (!cardVals.includes(filterVal)) {
+                        show = false;
+                    }
+                });
+
+                if (show) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                    if (card.dataset.urgency === 'urgent') urgentCount++;
+                    if (card.dataset.urgency === 'long-term') longTermCount++;
+                } else {
+                    card.style.display = 'none';
+                }
             });
+
+            // 更新统计数字
+            document.getElementById('total-jobs').textContent = visibleCount;
+            document.getElementById('urgent-jobs').textContent = urgentCount;
+            document.getElementById('long-term-jobs').textContent = longTermCount;
+            document.getElementById('filter-count').textContent = visibleCount;
+
+            // 空状态
+            emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
         }
 
-        updateUrgency();
+        // 初始执行一次
+        applyFilters();
     </script>
 </body>
 </html>
