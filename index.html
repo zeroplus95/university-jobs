@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高校行政岗招聘信息 - 2026年5月22日</title>
+    <title>高校行政岗招聘信息 - 2026年5月25日</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -279,6 +279,7 @@
         .hire-pinyong { background: #e3f2fd; color: #1565c0; }
         .hire-contract { background: #fff3e0; color: #e65100; }
         .hire-dispatch { background: #fce4ec; color: #c62828; }
+        .hire-beian { background: #f3e5f5; color: #7b1fa2; }
 
         .apply-link {
             display: inline-flex;
@@ -329,21 +330,21 @@
         <div class="header">
             <h1><i class="fas fa-graduation-cap"></i> 高校行政岗招聘信息</h1>
             <p>每日更新 · 仅展示仍在报名中的岗位</p>
-            <div class="update-time"><i class="fas fa-clock"></i> 更新于 2026年5月22日 10:00</div>
+            <div class="update-time"><i class="fas fa-clock"></i> 更新于 2026年5月25日 10:00</div>
         </div>
 
         <!-- 统计栏 -->
         <div class="stats-bar">
             <div class="stat-item total">
-                <div class="stat-number" id="totalCount">13</div>
+                <div class="stat-number" id="totalCount">12</div>
                 <div class="stat-label">在招岗位</div>
             </div>
             <div class="stat-item urgent">
                 <div class="stat-number" id="urgentCount">2</div>
-                <div class="stat-label">今天截止</div>
+                <div class="stat-label">即将截止</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="peopleCount">130+</div>
+                <div class="stat-number" id="peopleCount">160+</div>
                 <div class="stat-label">招聘总人数</div>
             </div>
         </div>
@@ -371,6 +372,7 @@
                 <button class="filter-btn" data-filter="hire-type" data-value="事业编制">事业编制</button>
                 <button class="filter-btn" data-filter="hire-type" data-value="聘用制">聘用制</button>
                 <button class="filter-btn" data-filter="hire-type" data-value="劳务派遣">劳务派遣</button>
+                <button class="filter-btn" data-filter="hire-type" data-value="备案制">备案制</button>
             </div>
             <div class="filter-row">
                 <span class="filter-label"><i class="fas fa-tag"></i> 类别</span>
@@ -381,77 +383,22 @@
             </div>
             <div class="filter-actions">
                 <button class="reset-btn" onclick="resetFilters()"><i class="fas fa-redo"></i> 重置筛选</button>
-                <div class="result-count">显示 <span id="visibleCount">13</span> / <span id="totalJobCount">13</span> 个岗位</div>
+                <div class="result-count">显示 <span id="visibleCount">12</span> / <span id="totalJobCount">12</span> 个岗位</div>
             </div>
         </div>
 
         <!-- 岗位列表 -->
         <div class="job-list" id="jobList">
 
-            <!-- 1. 山东大学（济南）- 今天截止 -->
+            <!-- 1. 安徽大学 - 明天截止！紧急 -->
             <div class="job-card urgent"
-                 data-region="华东" data-education="硕士" data-hire-type="劳务派遣" data-position="行政管理">
-                <div class="job-header">
-                    <div class="school-name">山东大学（济南）</div>
-                    <div class="school-tags">
-                        <span class="tag tag-985">985</span>
-                        <span class="tag tag-double-first">双一流</span>
-                        <span class="tag tag-direct">教育部直属</span>
-                        <span class="tag tag-new">今天截止！</span>
-                    </div>
-                </div>
-                <div class="position-name">法治工作办公室综合管理岗</div>
-                <div class="job-details">
-                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：硕士研究生及以上</div>
-                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：1人</div>
-                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：劳务派遣</div>
-                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：按相关规定执行</div>
-                    <div class="detail-item deadline-urgent"><i class="fas fa-calendar-times"></i> 截止：5月22日（今天！）</div>
-                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 山东济南</div>
-                </div>
-                <div class="job-footer">
-                    <span class="hire-type-badge hire-dispatch">劳务派遣</span>
-                    <a href="https://www.dbxb.sdu.edu.cn/info/1043/2156.htm" target="_blank" class="apply-link">
-                        <i class="fas fa-external-link-alt"></i> 查看公告
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. 广东行政职业学院 - 首批今天截止 -->
-            <div class="job-card urgent"
-                 data-region="华南" data-education="硕士" data-hire-type="事业编制" data-position="专业技术">
-                <div class="job-header">
-                    <div class="school-name">广东行政职业学院</div>
-                    <div class="school-tags">
-                        <span class="tag tag-provincial">省属公办</span>
-                        <span class="tag tag-new">首批今天截止</span>
-                    </div>
-                </div>
-                <div class="position-name">教学科研及管理人员</div>
-                <div class="job-details">
-                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：硕士研究生及以上</div>
-                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：9人</div>
-                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：事业编制</div>
-                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
-                    <div class="detail-item deadline-urgent"><i class="fas fa-calendar-times"></i> 首批截止：5月22日（今天！）</div>
-                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 广东广州</div>
-                </div>
-                <div class="job-footer">
-                    <span class="hire-type-badge hire-bianzhi">事业编制</span>
-                    <a href="https://hrss.gd.gov.cn/gkmlpt/content/4/4891/post_4891473.html" target="_blank" class="apply-link">
-                        <i class="fas fa-external-link-alt"></i> 查看公告
-                    </a>
-                </div>
-            </div>
-
-            <!-- 3. 安徽大学 -->
-            <div class="job-card deadline-warning"
                  data-region="华东" data-education="硕士" data-hire-type="事业编制" data-position="辅导员">
                 <div class="job-header">
                     <div class="school-name">安徽大学</div>
                     <div class="school-tags">
                         <span class="tag tag-211">211</span>
                         <span class="tag tag-double-first">双一流</span>
+                        <span class="tag tag-new">明天截止！</span>
                     </div>
                 </div>
                 <div class="position-name">专职辅导员</div>
@@ -460,7 +407,7 @@
                     <div class="detail-item"><i class="fas fa-users"></i> 招聘：16人</div>
                     <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：事业编制</div>
                     <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
-                    <div class="detail-item deadline-warning"><i class="fas fa-calendar-check"></i> 截止：5月26日17:00（4天）</div>
+                    <div class="detail-item deadline-urgent"><i class="fas fa-calendar-times"></i> 截止：5月26日17:00（明天！）</div>
                     <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 安徽合肥</div>
                 </div>
                 <div class="job-footer">
@@ -471,13 +418,14 @@
                 </div>
             </div>
 
-            <!-- 4. 淮南师范学院 -->
-            <div class="job-card deadline-warning"
+            <!-- 2. 淮南师范学院 - 明天截止！紧急 -->
+            <div class="job-card urgent"
                  data-region="华东" data-education="硕士" data-hire-type="事业编制" data-position="辅导员">
                 <div class="job-header">
                     <div class="school-name">淮南师范学院</div>
                     <div class="school-tags">
                         <span class="tag tag-provincial">省属公办</span>
+                        <span class="tag tag-new">明天截止！</span>
                     </div>
                 </div>
                 <div class="position-name">专职辅导员</div>
@@ -486,7 +434,7 @@
                     <div class="detail-item"><i class="fas fa-users"></i> 招聘：10人</div>
                     <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：事业编制</div>
                     <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
-                    <div class="detail-item deadline-warning"><i class="fas fa-calendar-check"></i> 截止：5月26日（4天）</div>
+                    <div class="detail-item deadline-urgent"><i class="fas fa-calendar-times"></i> 截止：5月26日（明天！）</div>
                     <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 安徽淮南</div>
                 </div>
                 <div class="job-footer">
@@ -497,8 +445,8 @@
                 </div>
             </div>
 
-            <!-- 5. 华中农业大学 -->
-            <div class="job-card"
+            <!-- 3. 华中农业大学 -->
+            <div class="job-card deadline-warning"
                  data-region="华中" data-education="硕士" data-hire-type="聘用制" data-position="行政管理">
                 <div class="job-header">
                     <div class="school-name">华中农业大学</div>
@@ -514,7 +462,7 @@
                     <div class="detail-item"><i class="fas fa-users"></i> 招聘：14人</div>
                     <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：学校正式职工（缴社保+公积金+企业年金）</div>
                     <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：按学校薪酬标准</div>
-                    <div class="detail-item deadline-normal"><i class="fas fa-calendar-check"></i> 截止：5月29日</div>
+                    <div class="detail-item deadline-warning"><i class="fas fa-calendar-check"></i> 截止：5月29日（4天）</div>
                     <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 湖北武汉</div>
                 </div>
                 <div class="job-footer">
@@ -525,8 +473,8 @@
                 </div>
             </div>
 
-            <!-- 6. 北京航空航天大学 -->
-            <div class="job-card"
+            <!-- 4. 北京航空航天大学 -->
+            <div class="job-card deadline-warning"
                  data-region="华北" data-education="硕士" data-hire-type="聘用制" data-position="行政管理">
                 <div class="job-header">
                     <div class="school-name">北京航空航天大学</div>
@@ -542,7 +490,7 @@
                     <div class="detail-item"><i class="fas fa-users"></i> 招聘：1-2人</div>
                     <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：聘用编（劳动合同）</div>
                     <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：按聘用编标准（面议）</div>
-                    <div class="detail-item deadline-normal"><i class="fas fa-calendar-check"></i> 截止：5月29日</div>
+                    <div class="detail-item deadline-warning"><i class="fas fa-calendar-check"></i> 截止：5月29日（4天）</div>
                     <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 北京市</div>
                 </div>
                 <div class="job-footer">
@@ -553,7 +501,34 @@
                 </div>
             </div>
 
-            <!-- 7. 东南大学（实验室与设备管理处）-->
+            <!-- 5. 临沂科技职业学院 🆕 -->
+            <div class="job-card deadline-warning"
+                 data-region="华东" data-education="本科" data-hire-type="备案制" data-position="专业技术">
+                <div class="job-header">
+                    <div class="school-name">临沂科技职业学院</div>
+                    <div class="school-tags">
+                        <span class="tag tag-provincial">市属公办</span>
+                        <span class="tag tag-new">🆕 新增</span>
+                    </div>
+                </div>
+                <div class="position-name">教师和教辅人员</div>
+                <div class="job-details">
+                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：本科/硕士（按岗位）</div>
+                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：41人</div>
+                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：人员控制总量备案管理</div>
+                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
+                    <div class="detail-item deadline-warning"><i class="fas fa-calendar-check"></i> 截止：5月29日16:00（4天）</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 山东临沂</div>
+                </div>
+                <div class="job-footer">
+                    <span class="hire-type-badge hire-beian">备案制</span>
+                    <a href="https://www.lyvust.edu.cn" target="_blank" class="apply-link">
+                        <i class="fas fa-external-link-alt"></i> 报名入口
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. 东南大学（实验室与设备管理处）-->
             <div class="job-card"
                  data-region="华东" data-education="硕士" data-hire-type="劳务派遣" data-position="行政管理">
                 <div class="job-header">
@@ -581,7 +556,7 @@
                 </div>
             </div>
 
-            <!-- 8. 中国科学技术大学 -->
+            <!-- 7. 中国科学技术大学 -->
             <div class="job-card"
                  data-region="华东" data-education="硕士" data-hire-type="聘用制" data-position="行政管理">
                 <div class="job-header">
@@ -595,7 +570,7 @@
                 <div class="position-name">管理岗位（人才派遣→事业编制）</div>
                 <div class="job-details">
                     <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：硕士研究生及以上（2岗需博士）</div>
-                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：33人</div>
+                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：34人</div>
                     <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：人才派遣→考核合格转事业编</div>
                     <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：首聘2年派遣，考核转编</div>
                     <div class="detail-item deadline-normal"><i class="fas fa-calendar-check"></i> 截止：6月6日</div>
@@ -609,7 +584,7 @@
                 </div>
             </div>
 
-            <!-- 9. 复旦大学（经济学院）-->
+            <!-- 8. 复旦大学（经济学院）-->
             <div class="job-card"
                  data-region="华东" data-education="硕士" data-hire-type="劳务派遣" data-position="行政管理">
                 <div class="job-header">
@@ -637,7 +612,7 @@
                 </div>
             </div>
 
-            <!-- 10. 复旦大学（国际合作处）-->
+            <!-- 9. 复旦大学（国际合作处）-->
             <div class="job-card longterm"
                  data-region="华东" data-education="本科" data-hire-type="劳务派遣" data-position="行政管理">
                 <div class="job-header">
@@ -665,7 +640,7 @@
                 </div>
             </div>
 
-            <!-- 11. 南通大学 -->
+            <!-- 10. 南通大学 -->
             <div class="job-card longterm"
                  data-region="华东" data-education="博士" data-hire-type="事业编制" data-position="行政管理">
                 <div class="job-header">
@@ -691,7 +666,7 @@
                 </div>
             </div>
 
-            <!-- 12. 深圳大学 -->
+            <!-- 11. 深圳大学 -->
             <div class="job-card longterm"
                  data-region="华南" data-education="硕士" data-hire-type="聘用制" data-position="行政管理">
                 <div class="job-header">
@@ -717,7 +692,7 @@
                 </div>
             </div>
 
-            <!-- 13. 安徽师范大学 -->
+            <!-- 12. 安徽师范大学 -->
             <div class="job-card longterm"
                  data-region="华东" data-education="硕士" data-hire-type="劳务派遣" data-position="行政管理">
                 <div class="job-header">
