@@ -76,6 +76,7 @@
 
         .stat-item.urgent .stat-number { color: #e74c3c; }
         .stat-item.total .stat-number { color: #667eea; }
+        .stat-item.new-item .stat-number { color: #f39c12; }
 
         /* 筛选面板 */
         .filter-panel {
@@ -336,15 +337,19 @@
         <!-- 统计栏 -->
         <div class="stats-bar">
             <div class="stat-item total">
-                <div class="stat-number" id="totalCount">12</div>
+                <div class="stat-number" id="totalCount">18</div>
                 <div class="stat-label">在招岗位</div>
             </div>
             <div class="stat-item urgent">
-                <div class="stat-number" id="urgentCount">2</div>
+                <div class="stat-number" id="urgentCount">3</div>
                 <div class="stat-label">即将截止</div>
             </div>
+            <div class="stat-item new-item">
+                <div class="stat-number" id="newCount">6</div>
+                <div class="stat-label">🆕 本期新增</div>
+            </div>
             <div class="stat-item">
-                <div class="stat-number" id="peopleCount">160+</div>
+                <div class="stat-number" id="peopleCount">200+</div>
                 <div class="stat-label">招聘总人数</div>
             </div>
         </div>
@@ -358,6 +363,7 @@
                 <button class="filter-btn" data-filter="region" data-value="华北">华北</button>
                 <button class="filter-btn" data-filter="region" data-value="华中">华中</button>
                 <button class="filter-btn" data-filter="region" data-value="华南">华南</button>
+                <button class="filter-btn" data-filter="region" data-value="西南">西南</button>
             </div>
             <div class="filter-row">
                 <span class="filter-label"><i class="fas fa-education"></i> 学历</span>
@@ -383,14 +389,43 @@
             </div>
             <div class="filter-actions">
                 <button class="reset-btn" onclick="resetFilters()"><i class="fas fa-redo"></i> 重置筛选</button>
-                <div class="result-count">显示 <span id="visibleCount">12</span> / <span id="totalJobCount">12</span> 个岗位</div>
+                <div class="result-count">显示 <span id="visibleCount">18</span> / <span id="totalJobCount">18</span> 个岗位</div>
             </div>
         </div>
 
         <!-- 岗位列表 -->
         <div class="job-list" id="jobList">
 
-            <!-- 1. 安徽大学 - 明天截止！紧急 -->
+            <!-- 1. 东南大学继续教育学院 - 今天截止！紧急 🆕 -->
+            <div class="job-card urgent"
+                 data-region="华东" data-education="本科" data-hire-type="劳务派遣" data-position="行政管理">
+                <div class="job-header">
+                    <div class="school-name">东南大学·继续教育学院</div>
+                    <div class="school-tags">
+                        <span class="tag tag-985">985</span>
+                        <span class="tag tag-double-first">双一流</span>
+                        <span class="tag tag-direct">教育部直属</span>
+                        <span class="tag tag-new">今天截止！</span>
+                    </div>
+                </div>
+                <div class="position-name">培训项目主管 / 培训业务助理</div>
+                <div class="job-details">
+                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：全日制本科及以上</div>
+                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：8人（主管6+助理2）</div>
+                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：劳务派遣</div>
+                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：按派遣制标准</div>
+                    <div class="detail-item deadline-urgent"><i class="fas fa-calendar-times"></i> 截止：5月25日18:00（今天！）</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 江苏南京</div>
+                </div>
+                <div class="job-footer">
+                    <span class="hire-type-badge hire-dispatch">劳务派遣</span>
+                    <a href="mailto:1017510574@qq.com" class="apply-link">
+                        <i class="fas fa-envelope"></i> 投递简历
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. 安徽大学 - 明天截止！紧急 -->
             <div class="job-card urgent"
                  data-region="华东" data-education="硕士" data-hire-type="事业编制" data-position="辅导员">
                 <div class="job-header">
@@ -418,7 +453,7 @@
                 </div>
             </div>
 
-            <!-- 2. 淮南师范学院 - 明天截止！紧急 -->
+            <!-- 3. 淮南师范学院 - 明天截止！紧急 -->
             <div class="job-card urgent"
                  data-region="华东" data-education="硕士" data-hire-type="事业编制" data-position="辅导员">
                 <div class="job-header">
@@ -439,13 +474,13 @@
                 </div>
                 <div class="job-footer">
                     <span class="hire-type-badge hire-bianzhi">事业编制</span>
-                    <a href="https://hrss.ah.gov.cn/zxzx/ztzl/ahsszsydwgkzpzl/ssgxgkzp/80788537.html" target="_blank" class="apply-link">
-                        <i class="fas fa-external-link-alt"></i> 查看公告
+                    <a href="http://rczp.hnnu.edu.cn/" target="_blank" class="apply-link">
+                        <i class="fas fa-external-link-alt"></i> 报名系统
                     </a>
                 </div>
             </div>
 
-            <!-- 3. 华中农业大学 -->
+            <!-- 4. 华中农业大学 -->
             <div class="job-card deadline-warning"
                  data-region="华中" data-education="硕士" data-hire-type="聘用制" data-position="行政管理">
                 <div class="job-header">
@@ -461,7 +496,7 @@
                     <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：硕士研究生及以上</div>
                     <div class="detail-item"><i class="fas fa-users"></i> 招聘：14人</div>
                     <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：学校正式职工（缴社保+公积金+企业年金）</div>
-                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：按学校薪酬标准</div>
+                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：行政/管理/专技三线晋升</div>
                     <div class="detail-item deadline-warning"><i class="fas fa-calendar-check"></i> 截止：5月29日（4天）</div>
                     <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 湖北武汉</div>
                 </div>
@@ -473,7 +508,7 @@
                 </div>
             </div>
 
-            <!-- 4. 北京航空航天大学 -->
+            <!-- 5. 北京航空航天大学 -->
             <div class="job-card deadline-warning"
                  data-region="华北" data-education="硕士" data-hire-type="聘用制" data-position="行政管理">
                 <div class="job-header">
@@ -501,14 +536,13 @@
                 </div>
             </div>
 
-            <!-- 5. 临沂科技职业学院 🆕 -->
+            <!-- 6. 临沂科技职业学院 -->
             <div class="job-card deadline-warning"
                  data-region="华东" data-education="本科" data-hire-type="备案制" data-position="专业技术">
                 <div class="job-header">
                     <div class="school-name">临沂科技职业学院</div>
                     <div class="school-tags">
                         <span class="tag tag-provincial">市属公办</span>
-                        <span class="tag tag-new">🆕 新增</span>
                     </div>
                 </div>
                 <div class="position-name">教师和教辅人员</div>
@@ -528,7 +562,7 @@
                 </div>
             </div>
 
-            <!-- 6. 东南大学（实验室与设备管理处）-->
+            <!-- 7. 东南大学（实验室与设备管理处）-->
             <div class="job-card"
                  data-region="华东" data-education="硕士" data-hire-type="劳务派遣" data-position="行政管理">
                 <div class="job-header">
@@ -550,13 +584,94 @@
                 </div>
                 <div class="job-footer">
                     <span class="hire-type-badge hire-dispatch">劳务派遣</span>
-                    <a href="https://rsc.seu.edu.cn/2026/0518/c54532a567980/page.htm" target="_blank" class="apply-link">
-                        <i class="fas fa-external-link-alt"></i> 查看公告
+                    <a href="mailto:seusysysbglc@163.com" class="apply-link">
+                        <i class="fas fa-envelope"></i> 投递简历
                     </a>
                 </div>
             </div>
 
-            <!-- 7. 中国科学技术大学 -->
+            <!-- 8. 盐城工业职业技术学院 🆕 -->
+            <div class="job-card"
+                 data-region="华东" data-education="硕士" data-hire-type="事业编制" data-position="辅导员">
+                <div class="job-header">
+                    <div class="school-name">盐城工业职业技术学院</div>
+                    <div class="school-tags">
+                        <span class="tag tag-provincial">省属公办</span>
+                        <span class="tag tag-new">🆕 新增</span>
+                    </div>
+                </div>
+                <div class="position-name">专职辅导员</div>
+                <div class="job-details">
+                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：硕士研究生及以上</div>
+                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：若干人</div>
+                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：全额拨款事业编制</div>
+                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
+                    <div class="detail-item deadline-normal"><i class="fas fa-calendar-check"></i> 截止：6月1日16:00</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 江苏盐城</div>
+                </div>
+                <div class="job-footer">
+                    <span class="hire-type-badge hire-bianzhi">事业编制</span>
+                    <a href="https://rs.jshrss.jiangsu.gov.cn/index/f/RCRS_0056" target="_blank" class="apply-link">
+                        <i class="fas fa-external-link-alt"></i> 报名系统
+                    </a>
+                </div>
+            </div>
+
+            <!-- 9. 齐鲁师范学院 🆕 -->
+            <div class="job-card"
+                 data-region="华东" data-education="博士" data-hire-type="事业编制" data-position="辅导员">
+                <div class="job-header">
+                    <div class="school-name">齐鲁师范学院</div>
+                    <div class="school-tags">
+                        <span class="tag tag-provincial">省属公办</span>
+                        <span class="tag tag-new">🆕 新增</span>
+                    </div>
+                </div>
+                <div class="position-name">专职辅导员（博士）</div>
+                <div class="job-details">
+                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：博士研究生</div>
+                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：6人</div>
+                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：省属事业编制</div>
+                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
+                    <div class="detail-item deadline-normal"><i class="fas fa-calendar-check"></i> 截止：6月1日16:00</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 山东济南</div>
+                </div>
+                <div class="job-footer">
+                    <span class="hire-type-badge hire-bianzhi">事业编制</span>
+                    <a href="https://qlnuzp.qlbz.com.cn/" target="_blank" class="apply-link">
+                        <i class="fas fa-external-link-alt"></i> 报名系统
+                    </a>
+                </div>
+            </div>
+
+            <!-- 10. 蚌埠医科大学 🆕 -->
+            <div class="job-card"
+                 data-region="华东" data-education="硕士" data-hire-type="事业编制" data-position="辅导员">
+                <div class="job-header">
+                    <div class="school-name">蚌埠医科大学</div>
+                    <div class="school-tags">
+                        <span class="tag tag-provincial">省属公办</span>
+                        <span class="tag tag-new">🆕 新增</span>
+                    </div>
+                </div>
+                <div class="position-name">专职辅导员</div>
+                <div class="job-details">
+                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：硕士研究生（医学门类）</div>
+                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：6人</div>
+                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：事业单位编制</div>
+                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
+                    <div class="detail-item deadline-normal"><i class="fas fa-calendar-check"></i> 截止：6月2日24:00</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 安徽蚌埠</div>
+                </div>
+                <div class="job-footer">
+                    <span class="hire-type-badge hire-bianzhi">事业编制</span>
+                    <a href="https://zp.bbmu.edu.cn/zp.html" target="_blank" class="apply-link">
+                        <i class="fas fa-external-link-alt"></i> 报名系统
+                    </a>
+                </div>
+            </div>
+
+            <!-- 11. 中国科学技术大学 -->
             <div class="job-card"
                  data-region="华东" data-education="硕士" data-hire-type="聘用制" data-position="行政管理">
                 <div class="job-header">
@@ -584,7 +699,34 @@
                 </div>
             </div>
 
-            <!-- 8. 复旦大学（经济学院）-->
+            <!-- 12. 滁州学院 🆕 -->
+            <div class="job-card"
+                 data-region="华东" data-education="硕士" data-hire-type="事业编制" data-position="辅导员">
+                <div class="job-header">
+                    <div class="school-name">滁州学院</div>
+                    <div class="school-tags">
+                        <span class="tag tag-provincial">省属公办</span>
+                        <span class="tag tag-new">🆕 新增</span>
+                    </div>
+                </div>
+                <div class="position-name">专职辅导员</div>
+                <div class="job-details">
+                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：硕士研究生及以上</div>
+                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：12人</div>
+                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：事业编制</div>
+                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
+                    <div class="detail-item deadline-normal"><i class="fas fa-calendar-check"></i> 截止：6月9日</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 安徽滁州</div>
+                </div>
+                <div class="job-footer">
+                    <span class="hire-type-badge hire-bianzhi">事业编制</span>
+                    <a href="https://zp.chzu.edu.cn:7443/zp.html" target="_blank" class="apply-link">
+                        <i class="fas fa-external-link-alt"></i> 报名系统
+                    </a>
+                </div>
+            </div>
+
+            <!-- 13. 复旦大学（经济学院）-->
             <div class="job-card"
                  data-region="华东" data-education="硕士" data-hire-type="劳务派遣" data-position="行政管理">
                 <div class="job-header">
@@ -612,7 +754,34 @@
                 </div>
             </div>
 
-            <!-- 9. 复旦大学（国际合作处）-->
+            <!-- 14. 中国民用航空飞行学院 🆕 -->
+            <div class="job-card longterm"
+                 data-region="西南" data-education="博士" data-hire-type="事业编制" data-position="辅导员">
+                <div class="job-header">
+                    <div class="school-name">中国民用航空飞行学院</div>
+                    <div class="school-tags">
+                        <span class="tag tag-direct">民航局直属</span>
+                        <span class="tag tag-new">🆕 新增</span>
+                    </div>
+                </div>
+                <div class="position-name">博士思政课教师和辅导员</div>
+                <div class="job-details">
+                    <div class="detail-item"><i class="fas fa-user-graduate"></i> 学历：博士研究生</div>
+                    <div class="detail-item"><i class="fas fa-users"></i> 招聘：若干人</div>
+                    <div class="detail-item"><i class="fas fa-id-badge"></i> 编制：事业编制</div>
+                    <div class="detail-item"><i class="fas fa-yen-sign"></i> 待遇：事业单位薪酬</div>
+                    <div class="detail-item deadline-longterm"><i class="fas fa-calendar-alt"></i> 截止：11月30日/招满即止</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> 四川广汉</div>
+                </div>
+                <div class="job-footer">
+                    <span class="hire-type-badge hire-bianzhi">事业编制</span>
+                    <a href="https://rszp.cafuc.edu.cn/info/1004/1422.htm" target="_blank" class="apply-link">
+                        <i class="fas fa-external-link-alt"></i> 查看公告
+                    </a>
+                </div>
+            </div>
+
+            <!-- 15. 复旦大学（国际合作处）-->
             <div class="job-card longterm"
                  data-region="华东" data-education="本科" data-hire-type="劳务派遣" data-position="行政管理">
                 <div class="job-header">
@@ -640,7 +809,7 @@
                 </div>
             </div>
 
-            <!-- 10. 南通大学 -->
+            <!-- 16. 南通大学 -->
             <div class="job-card longterm"
                  data-region="华东" data-education="博士" data-hire-type="事业编制" data-position="行政管理">
                 <div class="job-header">
@@ -666,7 +835,7 @@
                 </div>
             </div>
 
-            <!-- 11. 深圳大学 -->
+            <!-- 17. 深圳大学 -->
             <div class="job-card longterm"
                  data-region="华南" data-education="硕士" data-hire-type="聘用制" data-position="行政管理">
                 <div class="job-header">
@@ -692,7 +861,7 @@
                 </div>
             </div>
 
-            <!-- 12. 安徽师范大学 -->
+            <!-- 18. 安徽师范大学 -->
             <div class="job-card longterm"
                  data-region="华东" data-education="硕士" data-hire-type="劳务派遣" data-position="行政管理">
                 <div class="job-header">
