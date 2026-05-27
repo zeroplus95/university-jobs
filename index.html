@@ -497,6 +497,41 @@
             .sub-float-btn { width: 44px; height: 44px; font-size: 1.1em; }
         }
 
+        /* 评论区 */
+        .comment-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .comment-section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #e8d5f5;
+        }
+
+        .comment-section-header i {
+            font-size: 1.3em;
+            color: #764ba2;
+        }
+
+        .comment-section-header h3 {
+            font-size: 1.1em;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .comment-section-header .comment-hint {
+            font-size: 0.78em;
+            color: #999;
+            margin-left: auto;
+        }
+
         /* 底部 */
         .footer {
             text-align: center;
@@ -1184,6 +1219,16 @@
             没有找到符合条件的岗位，请调整筛选条件
         </div>
 
+        <!-- 评论区 -->
+        <div class="comment-section">
+            <div class="comment-section-header">
+                <i class="fas fa-comments"></i>
+                <h3>讨论交流</h3>
+                <span class="comment-hint">GitHub 登录即可评论</span>
+            </div>
+            <div class="giscus"></div>
+        </div>
+
         <!-- 底部 -->
         <div class="footer">
             <p>📚 数据来源：高校人才网、各高校人事处、省市人社局</p>
@@ -1414,6 +1459,28 @@
 
             applyFilters();
         }
+
+        // ===== Giscus 评论区 =====
+        // 登录验证通过后再加载评论区
+        (function loadGiscus() {
+            var s = document.createElement('script');
+            s.src = 'https://giscus.app/client.js';
+            s.setAttribute('data-repo', 'zeroplus95/university-jobs');
+            s.setAttribute('data-repo-id', 'R_kgDOSYUJSg');
+            s.setAttribute('data-category', 'General');
+            s.setAttribute('data-category-id', 'DIC_kwDOSYUJSs4C97lu');
+            s.setAttribute('data-mapping', 'pathname');
+            s.setAttribute('data-strict', '0');
+            s.setAttribute('data-reactions-enabled', '1');
+            s.setAttribute('data-emit-metadata', '0');
+            s.setAttribute('data-input-position', 'top');
+            s.setAttribute('data-theme', window.location.origin + window.location.pathname.replace(/index\.html$/, '').replace(/\/archive\/.*$/, '/') + 'giscus-theme.css');
+            s.setAttribute('data-lang', 'zh-CN');
+            s.setAttribute('data-loading', 'lazy');
+            s.setAttribute('crossorigin', 'anonymous');
+            s.async = true;
+            document.querySelector('.giscus').parentElement.appendChild(s);
+        })();
     </script>
 </body>
 </html>
