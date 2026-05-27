@@ -497,7 +497,23 @@
             .sub-float-btn { width: 44px; height: 44px; font-size: 1.1em; }
         }
 
-        /* 评论区 */
+        /* 评论区 - Waline 自定义紫色主题 */
+        :root {
+            --waline-font-size: 0.95em;
+            --waline-color: #2c3e50;
+            --waline-bgcolor: #faf5ff;
+            --waline-bgcolor-light: #f3e8ff;
+            --waline-border-color: #e8d5f5;
+            --waline-theme-color: #764ba2;
+            --waline-theme-color-light: rgba(118,75,162,0.12);
+            --waline-text-color: #2c3e50;
+            --waline-disable-bgcolor: #f0e6f6;
+            --waline-disable-color: #bbb;
+            --waline-bq-color: #764ba2;
+            --waline-info-color: #999;
+            --waline-info-bgcolor: #f3e8ff;
+        }
+
         .comment-section {
             background: rgba(255,255,255,0.95);
             border-radius: 16px;
@@ -531,6 +547,17 @@
             color: #999;
             margin-left: auto;
         }
+
+        /* Waline 细节微调 */
+        #waline .wl-panel { border-radius: 12px; border-color: #e8d5f5; }
+        #waline .wl-header-item { border-color: #e8d5f5; }
+        #waline .wl-btn { border-radius: 8px; }
+        #waline .wl-btn.primary { background: #764ba2; border-color: #764ba2; }
+        #waline .wl-btn.primary:hover { background: #667eea; border-color: #667eea; }
+        #waline .wl-card { border-radius: 10px; border-color: #e8d5f5; }
+        #waline .wl-reaction-img { border-radius: 8px; }
+        #waline .wl-reaction.active .wl-reaction-img { border-color: #764ba2; }
+        #waline .wl-quote { border-left-color: #764ba2; }
 
         /* 底部 */
         .footer {
@@ -1224,9 +1251,9 @@
             <div class="comment-section-header">
                 <i class="fas fa-comments"></i>
                 <h3>讨论交流</h3>
-                <span class="comment-hint">GitHub 登录即可评论</span>
+                <span class="comment-hint">无需登录，匿名可评</span>
             </div>
-            <div class="giscus"></div>
+            <div id="waline"></div>
         </div>
 
         <!-- 底部 -->
@@ -1460,26 +1487,34 @@
             applyFilters();
         }
 
-        // ===== Giscus 评论区 =====
-        // 登录验证通过后再加载评论区
-        (function loadGiscus() {
+        // ===== Waline 评论区 =====
+        // Waline serverURL 配置（部署后替换为你的 Vercel 地址）
+        var WALINE_SERVER_URL = 'https://university-jobs-waline.vercel.app';
+
+        (function loadWaline() {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/@waline/client@v3/dist/waline.css';
+            document.head.appendChild(link);
+
             var s = document.createElement('script');
-            s.src = 'https://giscus.app/client.js';
-            s.setAttribute('data-repo', 'zeroplus95/university-jobs');
-            s.setAttribute('data-repo-id', 'R_kgDOSYUJSg');
-            s.setAttribute('data-category', 'General');
-            s.setAttribute('data-category-id', 'DIC_kwDOSYUJSs4C97lu');
-            s.setAttribute('data-mapping', 'pathname');
-            s.setAttribute('data-strict', '0');
-            s.setAttribute('data-reactions-enabled', '1');
-            s.setAttribute('data-emit-metadata', '0');
-            s.setAttribute('data-input-position', 'top');
-            s.setAttribute('data-theme', window.location.origin + window.location.pathname.replace(/index\.html$/, '').replace(/\/archive\/.*$/, '/') + 'giscus-theme.css');
-            s.setAttribute('data-lang', 'zh-CN');
-            s.setAttribute('data-loading', 'lazy');
-            s.setAttribute('crossorigin', 'anonymous');
-            s.async = true;
-            document.querySelector('.giscus').parentElement.appendChild(s);
+            s.type = 'module';
+            s.textContent = `
+                import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+                init({
+                    el: '#waline',
+                    serverURL: '${WALINE_SERVER_URL}',
+                    lang: 'zh-CN',
+                    placeholder: '说点什么吧~ 无需登录，匿名可评 ✨',
+                    requiredMeta: [],
+                    anonymous: true,
+                    reaction: true,
+                    imageUploader: false,
+                    wordLimit: [2, 500],
+                    copyright: false,
+                });
+            `;
+            document.body.appendChild(s);
         })();
     </script>
 </body>
