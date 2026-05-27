@@ -497,23 +497,7 @@
             .sub-float-btn { width: 44px; height: 44px; font-size: 1.1em; }
         }
 
-        /* 评论区 - Waline 自定义紫色主题 */
-        :root {
-            --waline-font-size: 0.95em;
-            --waline-color: #2c3e50;
-            --waline-bgcolor: #faf5ff;
-            --waline-bgcolor-light: #f3e8ff;
-            --waline-border-color: #e8d5f5;
-            --waline-theme-color: #764ba2;
-            --waline-theme-color-light: rgba(118,75,162,0.12);
-            --waline-text-color: #2c3e50;
-            --waline-disable-bgcolor: #f0e6f6;
-            --waline-disable-color: #bbb;
-            --waline-bq-color: #764ba2;
-            --waline-info-color: #999;
-            --waline-info-bgcolor: #f3e8ff;
-        }
-
+        /* 评论区 - 自建 GitHub Issues 评论 */
         .comment-section {
             background: rgba(255,255,255,0.95);
             border-radius: 16px;
@@ -531,33 +515,39 @@
             border-bottom: 2px solid #e8d5f5;
         }
 
-        .comment-section-header i {
-            font-size: 1.3em;
-            color: #764ba2;
-        }
+        .comment-section-header i { font-size: 1.3em; color: #764ba2; }
+        .comment-section-header h3 { font-size: 1.1em; color: #2c3e50; font-weight: 700; }
+        .comment-section-header .comment-hint { font-size: 0.78em; color: #999; margin-left: auto; }
+        .comment-section-header .comment-count { font-size: 0.78em; color: #764ba2; background: #f3e8ff; padding: 2px 10px; border-radius: 10px; margin-left: 8px; }
 
-        .comment-section-header h3 {
-            font-size: 1.1em;
-            color: #2c3e50;
-            font-weight: 700;
-        }
+        .comments-list { margin-bottom: 20px; max-height: 500px; overflow-y: auto; }
+        .comment-empty, .comment-loading, .comment-error, .comment-setup { text-align: center; color: #999; padding: 30px 10px; font-size: 0.9em; }
+        .comment-error { color: #e74c3c; }
 
-        .comment-section-header .comment-hint {
-            font-size: 0.78em;
-            color: #999;
-            margin-left: auto;
-        }
+        .comment-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f0e6f6; }
+        .comment-item:last-child { border-bottom: none; }
 
-        /* Waline 细节微调 */
-        #waline .wl-panel { border-radius: 12px; border-color: #e8d5f5; }
-        #waline .wl-header-item { border-color: #e8d5f5; }
-        #waline .wl-btn { border-radius: 8px; }
-        #waline .wl-btn.primary { background: #764ba2; border-color: #764ba2; }
-        #waline .wl-btn.primary:hover { background: #667eea; border-color: #667eea; }
-        #waline .wl-card { border-radius: 10px; border-color: #e8d5f5; }
-        #waline .wl-reaction-img { border-radius: 8px; }
-        #waline .wl-reaction.active .wl-reaction-img { border-color: #764ba2; }
-        #waline .wl-quote { border-left-color: #764ba2; }
+        .comment-avatar { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85em; font-weight: 600; }
+        .comment-avatar img { width: 36px; height: 36px; border-radius: 50%; }
+
+        .comment-body { flex: 1; min-width: 0; }
+        .comment-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .comment-nick { font-weight: 600; color: #764ba2; font-size: 0.9em; }
+        .comment-time { font-size: 0.75em; color: #bbb; }
+        .comment-text { font-size: 0.9em; color: #444; line-height: 1.6; word-break: break-word; }
+
+        .comment-form { margin-top: 16px; }
+        .comment-form-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        .comment-form-row input { flex: 1; padding: 10px 14px; border: 1.5px solid #e8d5f5; border-radius: 10px; font-size: 0.88em; outline: none; transition: border-color 0.2s; background: #faf5ff; }
+        .comment-form-row input:focus { border-color: #764ba2; }
+        .comment-form textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #e8d5f5; border-radius: 10px; font-size: 0.88em; resize: vertical; min-height: 80px; outline: none; transition: border-color 0.2s; background: #faf5ff; font-family: inherit; }
+        .comment-form textarea:focus { border-color: #764ba2; }
+
+        .comment-form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+        .comment-char-count { font-size: 0.78em; color: #bbb; }
+        .comment-submit-btn { padding: 8px 24px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 10px; font-size: 0.88em; cursor: pointer; transition: opacity 0.2s; }
+        .comment-submit-btn:hover { opacity: 0.9; }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         /* 底部 */
         .footer {
@@ -1251,9 +1241,22 @@
             <div class="comment-section-header">
                 <i class="fas fa-comments"></i>
                 <h3>讨论交流</h3>
+                <span id="comment-count" class="comment-count" style="display:none">0</span>
                 <span class="comment-hint">无需登录，匿名可评</span>
             </div>
-            <div id="waline"></div>
+            <div id="comments-list" class="comments-list">
+                <div class="comment-loading">加载中...</div>
+            </div>
+            <form id="comment-form" class="comment-form">
+                <div class="comment-form-row">
+                    <input type="text" id="comment-nick" placeholder="昵称（选填，默认匿名）" maxlength="30">
+                </div>
+                <textarea id="comment-body" placeholder="说点什么吧~ ✨" maxlength="500" rows="3" required></textarea>
+                <div class="comment-form-footer">
+                    <span id="comment-char-count" class="comment-char-count">0/500</span>
+                    <button type="submit" id="comment-submit-btn" class="comment-submit-btn">发布</button>
+                </div>
+            </form>
         </div>
 
         <!-- 底部 -->
@@ -1487,34 +1490,124 @@
             applyFilters();
         }
 
-        // ===== Waline 评论区 =====
-        // Waline serverURL 配置（部署后替换为你的 Vercel 地址）
-        var WALINE_SERVER_URL = 'https://university-jobs-waline.vercel.app';
+        // ===== GitHub Issues 评论区 =====
+        (function() {
+            // 精细化令牌：仅 Issues 读写权限，限本仓库
+            // 创建方法：GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token
+            // 权限仅选：Issues → Read and write，仓库仅选 zeroplus95/university-jobs
+            var COMMENT_TOKEN = '';
 
-        (function loadWaline() {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://unpkg.com/@waline/client@v3/dist/waline.css';
-            document.head.appendChild(link);
+            var REPO_OWNER = 'zeroplus95';
+            var REPO_NAME = 'university-jobs';
 
-            var s = document.createElement('script');
-            s.type = 'module';
-            s.textContent = `
-                import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
-                init({
-                    el: '#waline',
-                    serverURL: '${WALINE_SERVER_URL}',
-                    lang: 'zh-CN',
-                    placeholder: '说点什么吧~ 无需登录，匿名可评 ✨',
-                    requiredMeta: [],
-                    anonymous: true,
-                    reaction: true,
-                    imageUploader: false,
-                    wordLimit: [2, 500],
-                    copyright: false,
+            function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+            function getPageKey() {
+                var m = document.title.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (m) return m[1]+'-'+m[2].padStart(2,'0')+'-'+m[3].padStart(2,'0');
+                return new Date().toISOString().slice(0,10);
+            }
+
+            function api(url, opts) {
+                var h = {'Accept':'application/vnd.github.v3+json'};
+                if (COMMENT_TOKEN) h['Authorization'] = 'token '+COMMENT_TOKEN;
+                if (opts && opts.body) h['Content-Type'] = 'application/json';
+                return fetch(url, Object.assign({headers:h}, opts||{})).then(function(r){
+                    if (!r.ok) throw new Error('API '+r.status);
+                    return r.json();
                 });
-            `;
-            document.body.appendChild(s);
+            }
+
+            function renderComments(comments) {
+                var list = document.getElementById('comments-list');
+                var cnt = document.getElementById('comment-count');
+                if (!comments.length) {
+                    list.innerHTML = '<div class="comment-empty">还没有评论，来说点什么吧~</div>';
+                    cnt.style.display = 'none';
+                    return;
+                }
+                cnt.style.display = '';
+                cnt.textContent = comments.length;
+                list.innerHTML = comments.map(function(c){
+                    var body = c.body||'';
+                    var lines = body.split('\n');
+                    var nick = '匿名', content = body;
+                    if (lines[0] && lines[0].charAt(0)==='@') {
+                        nick = lines[0].substring(1).trim()||'匿名';
+                        content = lines.slice(1).join('\n').trim();
+                    }
+                    var t = new Date(c.created_at);
+                    var ts = (t.getMonth()+1)+'/'+t.getDate()+' '+t.getHours().toString().padStart(2,'0')+':'+t.getMinutes().toString().padStart(2,'0');
+                    var initial = nick.charAt(0).toUpperCase();
+                    return '<div class="comment-item">'
+                        +'<div class="comment-avatar">'+esc(initial)+'</div>'
+                        +'<div class="comment-body">'
+                        +'<div class="comment-meta"><span class="comment-nick">'+esc(nick)+'</span><span class="comment-time">'+ts+'</span></div>'
+                        +'<div class="comment-text">'+esc(content).replace(/\n/g,'<br>')+'</div>'
+                        +'</div></div>';
+                }).join('');
+                list.scrollTop = list.scrollHeight;
+            }
+
+            function init() {
+                if (!COMMENT_TOKEN) {
+                    document.getElementById('comments-list').innerHTML = '<div class="comment-setup">✨ 评论区配置中，敬请期待</div>';
+                    document.getElementById('comment-form').style.display = 'none';
+                    return;
+                }
+
+                var issueNum = null;
+
+                // 查找或创建 Issue
+                var key = getPageKey();
+                var title = '\uD83D\uDCAC \u8BC4\u8BBA | '+key;
+                api('https://api.github.com/search/issues?q=repo:'+REPO_OWNER+'/'+REPO_NAME+'+in:title+"'+encodeURIComponent(title)+'"')
+                .then(function(d){
+                    if (d.total_count>0) return d.items[0];
+                    return api('https://api.github.com/repos/'+REPO_OWNER+'/'+REPO_NAME+'/issues',{
+                        method:'POST',
+                        body:JSON.stringify({title:title, body:'\u6B64 Issue \u7528\u4E8E ['+document.title+']('+window.location.href+') \u9875\u9762\u7684\u8BC4\u8BBA\u3002'})
+                    });
+                })
+                .then(function(issue){
+                    issueNum = issue.number;
+                    return api('https://api.github.com/repos/'+REPO_OWNER+'/'+REPO_NAME+'/issues/'+issueNum+'/comments?per_page=100&sort=created&direction=asc');
+                })
+                .then(renderComments)
+                .catch(function(){
+                    document.getElementById('comments-list').innerHTML = '<div class="comment-error">评论加载失败，请刷新重试</div>';
+                });
+
+                // 字数统计
+                document.getElementById('comment-body').addEventListener('input',function(e){
+                    document.getElementById('comment-char-count').textContent = e.target.value.length+'/500';
+                });
+
+                // 提交评论
+                document.getElementById('comment-form').addEventListener('submit',function(e){
+                    e.preventDefault();
+                    if (!issueNum) return;
+                    var nick = document.getElementById('comment-nick').value.trim()||'匿名';
+                    var body = document.getElementById('comment-body').value.trim();
+                    if (!body) return;
+                    var btn = document.getElementById('comment-submit-btn');
+                    btn.disabled = true; btn.textContent = '发布中...';
+                    api('https://api.github.com/repos/'+REPO_OWNER+'/'+REPO_NAME+'/issues/'+issueNum+'/comments',{
+                        method:'POST',
+                        body:JSON.stringify({body:'@'+nick+'\n'+body})
+                    })
+                    .then(function(){
+                        document.getElementById('comment-body').value = '';
+                        document.getElementById('comment-char-count').textContent = '0/500';
+                        return api('https://api.github.com/repos/'+REPO_OWNER+'/'+REPO_NAME+'/issues/'+issueNum+'/comments?per_page=100&sort=created&direction=asc');
+                    })
+                    .then(renderComments)
+                    .catch(function(){ alert('评论发布失败，请稍后重试'); })
+                    .finally(function(){ btn.disabled = false; btn.textContent = '发布'; });
+                });
+            }
+
+            init();
         })();
     </script>
 </body>
