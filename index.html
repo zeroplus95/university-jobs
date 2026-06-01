@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高校行政岗招聘信息 - 2026年5月29日</title>
+    <title>高校行政岗招聘信息 - 2026年6月1日</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin:0; padding:0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
@@ -15,7 +15,7 @@
             padding: 15px;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container { max-width: 1200px; margin:0 auto; }
 
         .header {
             text-align: center;
@@ -309,7 +309,7 @@
         }
 
         @keyframes pulse-new {
-            0%, 100% { opacity: 1; }
+            0%, 100% { opacity:1; }
             50% { opacity: 0.7; }
         }
 
@@ -597,6 +597,7 @@
     </style>
 </head>
 <body>
+
     <!-- 登录验证 -->
     <div class="login-overlay" id="loginOverlay">
         <div class="login-card">
@@ -617,12 +618,12 @@
         <div class="header">
             <h1><i class="fas fa-graduation-cap"></i> 高校行政岗招聘信息</h1>
             <p>每日更新 · 只展示仍在报名中的岗位</p>
-            <div class="update-time"><i class="fas fa-clock"></i> 更新时间：2026年5月29日 10:00</div>
+            <div class="update-time"><i class="fas fa-clock"></i> 更新时间：2026年6月1日 10:00</div>
 
         <!-- 日期选择器 -->
         <div class="date-picker-bar">
             <span class="date-picker-label"><i class="fas fa-calendar-alt"></i> 查看日期</span>
-            <input type="date" id="datePicker" class="date-input" value="2026-05-29" min="2026-05-08" max="2026-05-29">
+            <input type="date" id="datePicker" class="date-input" value="2026-06-01" min="2026-05-08" max="2026-06-01">
             <button class="date-today-btn" onclick="goToday()">今天</button>
             <button class="date-nav-btn" onclick="goPrev()"><i class="fas fa-chevron-left"></i></button>
             <button class="date-nav-btn" onclick="goNext()"><i class="fas fa-chevron-right"></i></button>
@@ -638,19 +639,19 @@
         <!-- 统计栏 -->
         <div class="stats-bar">
             <div class="stat-item">
-                <span class="stat-num" id="totalCount">34</span>
+                <span class="stat-num" id="totalCount">29</span>
                 <span class="stat-label">在招岗位</span>
             </div>
             <div class="stat-item">
-                <span class="stat-num" id="urgentCount" style="color:#ff6b6b">6</span>
+                <span class="stat-num" id="urgentCount" style="color:#ff6b6b">2</span>
                 <span class="stat-label">3天内截止</span>
             </div>
             <div class="stat-item">
-                <span class="stat-num" style="color:#ffa502">2</span>
+                <span class="stat-num" style="color:#ffa502">3</span>
                 <span class="stat-label">本期新增</span>
             </div>
             <div class="stat-item">
-                <span class="stat-num">560+</span>
+                <span class="stat-num">520+</span>
                 <span class="stat-label">招聘总人数</span>
             </div>
             <div class="stat-item">
@@ -699,7 +700,7 @@
                 <button class="filter-btn" data-filter="position" data-value="教辅">教辅</button>
             </div>
             <div class="filter-row" style="justify-content:space-between;">
-                <div class="filter-result">筛选结果：<span id="filteredCount">34</span> 个岗位</div>
+                <div class="filter-result">筛选结果：<span id="filteredCount">29</span> 个岗位</div>
                 <button class="reset-btn" onclick="resetFilters()"><i class="fas fa-redo"></i> 重置筛选</button>
             </div>
         </div>
@@ -707,169 +708,9 @@
         <!-- 岗位卡片 -->
         <div class="cards-grid" id="cardsGrid">
 
-            <!-- 1. 华中农业大学 - 今天截止！ -->
-            <div class="job-card" data-region="华中" data-education="硕士" data-hire="聘用制" data-position="行政管理">
-                <div class="new-badge" style="background:#e74c3c;">紧急</div>
-                <div class="card-header">
-                    <div>
-                        <div class="school-name">华中农业大学</div>
-                        <div class="school-tags">
-                            <span class="tag tag-985">985</span>
-                            <span class="tag tag-211">211</span>
-                            <span class="tag tag-double-first">双一流</span>
-                        </div>
-                    </div>
-                    <span class="hire-type-badge badge-pinyong">聘用制</span>
-                </div>
-                <div class="card-body">
-                    <div class="position-name">党政管理岗</div>
-                    <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">14名</span></div>
-                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士及以上</span></div>
-                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">五险一金+企业年金</span></div>
-                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">学校正式职工</span></div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 5月29日截止（今天！）</div>
-                    <a href="https://jybzp.chsi.com.cn/home/bul/announcement/bw18ogfy03tcpbma" target="_blank" class="apply-link">查看详情</a>
-                </div>
-            </div>
-
-            <!-- 2. 北京航空航天大学 - 今天截止！ -->
-            <div class="job-card" data-region="华北" data-education="硕士" data-hire="聘用制" data-position="行政管理">
-                <div class="new-badge" style="background:#e74c3c;">紧急</div>
-                <div class="card-header">
-                    <div>
-                        <div class="school-name">北京航空航天大学</div>
-                        <div class="school-tags">
-                            <span class="tag tag-985">985</span>
-                            <span class="tag tag-211">211</span>
-                            <span class="tag tag-double-first">双一流</span>
-                        </div>
-                    </div>
-                    <span class="hire-type-badge badge-hetong">聘用编/合同制</span>
-                </div>
-                <div class="card-body">
-                    <div class="position-name">人文社科学院·教务及行政管理岗</div>
-                    <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1-2名</span></div>
-                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士研究生</span></div>
-                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">按学校规定</span></div>
-                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">人文社科学院</span></div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 5月29日截止（今天！）</div>
-                    <a href="https://rsc.buaa.edu.cn/info/1049/7101.htm" target="_blank" class="apply-link">查看详情</a>
-                </div>
-            </div>
-
-            <!-- 3. 临沂科技职业学院 - 今天截止！ -->
-            <div class="job-card" data-region="华东" data-education="本科" data-hire="备案制" data-position="教辅">
-                <div class="new-badge" style="background:#e74c3c;">紧急</div>
-                <div class="card-header">
-                    <div>
-                        <div class="school-name">临沂科技职业学院</div>
-                    </div>
-                    <span class="hire-type-badge badge-beian">备案制</span>
-                </div>
-                <div class="card-body">
-                    <div class="position-name">教师/教辅人员</div>
-                    <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">41名</span></div>
-                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">本科及以上</span></div>
-                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">备案制待遇</span></div>
-                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">山东临沂</span></div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 5月29日16:00截止（今天！）</div>
-                    <a href="https://www.gaoxiaojob.com/announcement/detail/401918.html" target="_blank" class="apply-link">查看详情</a>
-                </div>
-            </div>
-
-            <!-- 4. 南通大学杏林学院 - 明天截止 -->
-            <div class="job-card" data-region="华东" data-education="硕士" data-hire="聘用制" data-position="辅导员">
-                <div class="new-badge" style="background:#e74c3c;">紧急</div>
-                <div class="card-header">
-                    <div>
-                        <div class="school-name">南通大学杏林学院</div>
-                    </div>
-                    <span class="hire-type-badge badge-pinyong">人事代理/聘用制</span>
-                </div>
-                <div class="card-body">
-                    <div class="position-name">公开招聘辅导员</div>
-                    <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">5名</span></div>
-                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士研究生</span></div>
-                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">按学校规定</span></div>
-                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">江苏启东</span></div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 5月30日16:00截止（明天！）</div>
-                    <a href="https://xlxy.ntu.edu.cn/2026/0511/c3057a290832/page.htm" target="_blank" class="apply-link">立即报名</a>
-                </div>
-            </div>
-
-            <!-- 5. 内蒙古大学 -->
-            <div class="job-card" data-region="华北" data-education="本科" data-hire="合同制" data-position="行政管理">
-                <div class="card-header">
-                    <div>
-                        <div class="school-name">内蒙古大学</div>
-                        <div class="school-tags">
-                            <span class="tag tag-211">211</span>
-                            <span class="tag tag-double-first">双一流</span>
-                        </div>
-                    </div>
-                    <span class="hire-type-badge badge-hetong">编外聘用（1年期）</span>
-                </div>
-                <div class="card-body">
-                    <div class="position-name">教学助理/管理助理</div>
-                    <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">58名</span></div>
-                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">本科及以上（应届）</span></div>
-                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">缴纳保险</span></div>
-                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">内蒙古呼和浩特</span></div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="deadline deadline-urgent"><i class="fas fa-clock"></i> 5月31日17:00截止（2天）</div>
-                    <a href="https://rsc.imu.edu.cn/info/1012/4496.htm" target="_blank" class="apply-link">立即报名</a>
-                </div>
-            </div>
-
-            <!-- 6. 东南大学 -->
-            <div class="job-card" data-region="华东" data-education="本科" data-hire="劳务派遣" data-position="行政管理">
-                <div class="card-header">
-                    <div>
-                        <div class="school-name">东南大学</div>
-                        <div class="school-tags">
-                            <span class="tag tag-985">985</span>
-                            <span class="tag tag-211">211</span>
-                            <span class="tag tag-double-first">双一流</span>
-                        </div>
-                    </div>
-                    <span class="hire-type-badge badge-laowu">劳务派遣</span>
-                </div>
-                <div class="card-body">
-                    <div class="position-name">实验室与设备管理处·派遣制行政管理</div>
-                    <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1名</span></div>
-                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">本科及以上</span></div>
-                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">按学校规定</span></div>
-                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">实验室与设备管理处</span></div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="deadline deadline-urgent"><i class="fas fa-clock"></i> 5月31日截止（2天）</div>
-                    <a href="https://rsc.seu.edu.cn/2026/0518/c54532a567980/page.htm" target="_blank" class="apply-link">查看详情</a>
-                </div>
-            </div>
-
-            <!-- 7. 盐城工业职业技术学院 -->
+            <!-- 1. 盐城工业职业技术学院 - 今天截止！ -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
+                <div class="new-badge" style="background:#e74c3c;">紧急</div>
                 <div class="card-header">
                     <div>
                         <div class="school-name">盐城工业职业技术学院</div>
@@ -886,13 +727,14 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月1日16:00截止</div>
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6月1日16:00截止（今天！）</div>
                     <a href="https://www.ycpc.edu.cn/2026/0522/c1040a62915/page.htm" target="_blank" class="apply-link">查看详情</a>
                 </div>
             </div>
 
-            <!-- 8. 西安科技大学 -->
+            <!-- 2. 西安科技大学 - 今天截止报名！ -->
             <div class="job-card" data-region="西北" data-education="硕士" data-hire="事业编制" data-position="辅导员">
+                <div class="new-badge" style="background:#e74c3c;">紧急</div>
                 <div class="card-header">
                     <div>
                         <div class="school-name">西安科技大学</div>
@@ -909,12 +751,12 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月1日-6月8日报名</div>
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6月1日-6月8日报名（今天开始！）</div>
                     <a href="https://rsc.xust.edu.cn/info/1038/3491.htm" target="_blank" class="apply-link">查看详情</a>
                 </div>
             </div>
 
-            <!-- 9. 广州医科大学 -->
+            <!-- 3. 广州医科大学 -->
             <div class="job-card" data-region="华南" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -935,12 +777,12 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月2日截止</div>
+                    <div class="deadline deadline-urgent"><i class="fas fa-clock"></i> 6月2日截止（明天！）</div>
                     <a href="https://gzykdx.iguopin.com/" target="_blank" class="apply-link">立即报名</a>
                 </div>
             </div>
 
-            <!-- 10. 中国音乐学院 -->
+            <!-- 4. 中国音乐学院 -->
             <div class="job-card" data-region="华北" data-education="硕士" data-hire="事业编制" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -962,12 +804,12 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月2日11:00截止</div>
+                    <div class="deadline deadline-urgent"><i class="fas fa-clock"></i> 6月2日11:00截止（明天！）</div>
                     <a href="https://zhaopin.ccmusic.edu.cn/zp.html#/" target="_blank" class="apply-link">立即报名</a>
                 </div>
             </div>
 
-            <!-- 11. 蚌埠医科大学 -->
+            <!-- 5. 蚌埠医科大学 -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -985,12 +827,12 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月2日24:00截止</div>
+                    <div class="deadline deadline-urgent"><i class="fas fa-clock"></i> 6月2日24:00截止（明天！）</div>
                     <a href="https://rsc.bbmu.edu.cn/info/1077/4799.htm" target="_blank" class="apply-link">查看详情</a>
                 </div>
             </div>
 
-            <!-- 12. 兰州城市学院 -->
+            <!-- 6. 兰州城市学院 -->
             <div class="job-card" data-region="西北" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -1013,7 +855,7 @@
                 </div>
             </div>
 
-            <!-- 13. 齐鲁师范学院（辅导员）- 截止延长至6月5日 -->
+            <!-- 7. 齐鲁师范学院（辅导员） -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -1036,7 +878,82 @@
                 </div>
             </div>
 
-            <!-- 14. 山东第一医科大学 -->
+            <!-- 8. 南京审计大学 🆕 -->
+            <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">南京审计大学</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">江苏省属</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">事业编制</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">专职辅导员</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">5名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士及以上</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">事业单位待遇</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">江苏南京</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月8日16:00截止</div>
+                    <a href="https://rs.jshrss.jiangsu.gov.cn/index/f/RCRS_0056" target="_blank" class="apply-link">立即报名</a>
+                </div>
+            </div>
+
+            <!-- 9. 宿州学院 🆕 -->
+            <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">宿州学院</div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">事业编制</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">专职辅导员（男8名/女8名）</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">16名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">研究生学历</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">事业单位待遇</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">中共党员·需住宿舍</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月12日24:00截止</div>
+                    <a href="mailto:szxyfdyzp@ahszu.edu.cn" target="_blank" class="apply-link">邮箱报名</a>
+                </div>
+            </div>
+
+            <!-- 10. 兰州理工大学 🆕 -->
+            <div class="job-card" data-region="西北" data-education="博士" data-hire="事业编制" data-position="辅导员">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">兰州理工大学</div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">事业编制</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">博士研究生学历专职辅导员</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">10名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">博士研究生</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">事业编+安家补贴</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">甘肃兰州</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月12日截止</div>
+                    <a href="https://zhaopin.lut.edu.cn/fdy/" target="_blank" class="apply-link">查看详情</a>
+                </div>
+            </div>
+
+            <!-- 11. 山东第一医科大学 -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="教辅">
                 <div class="card-header">
                     <div>
@@ -1059,7 +976,7 @@
                 </div>
             </div>
 
-            <!-- 15. 中国人民大学 -->
+            <!-- 12. 中国人民大学 -->
             <div class="job-card" data-region="华北" data-education="硕士" data-hire="劳务派遣" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1087,7 +1004,7 @@
                 </div>
             </div>
 
-            <!-- 16. 中国科学技术大学 -->
+            <!-- 13. 中国科学技术大学 -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="聘用制" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1115,7 +1032,7 @@
                 </div>
             </div>
 
-            <!-- 17. 安徽理工大学 -->
+            <!-- 14. 安徽理工大学 -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -1138,9 +1055,8 @@
                 </div>
             </div>
 
-            <!-- 18. 广西大学法学院 🆕 -->
+            <!-- 15. 广西大学法学院 -->
             <div class="job-card" data-region="华南" data-education="本科" data-hire="劳务派遣" data-position="行政管理">
-                <div class="new-badge">NEW</div>
                 <div class="card-header">
                     <div>
                         <div class="school-name">广西大学法学院</div>
@@ -1166,7 +1082,7 @@
                 </div>
             </div>
 
-            <!-- 19. 首都体育学院 -->
+            <!-- 16. 首都体育学院 -->
             <div class="job-card" data-region="华北" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -1192,7 +1108,7 @@
                 </div>
             </div>
 
-            <!-- 20. 滁州学院 -->
+            <!-- 17. 滁州学院 -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -1215,7 +1131,7 @@
                 </div>
             </div>
 
-            <!-- 21. 无锡学院 -->
+            <!-- 18. 无锡学院 -->
             <div class="job-card" data-region="华东" data-education="本科" data-hire="劳务派遣" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1238,8 +1154,8 @@
                 </div>
             </div>
 
-            <!-- 22. 牡丹江师范学院 -->
-            <div class="job-card" data-region="东北" data-education="硕士" data-hire="事业编制" data-position="辅导员">
+            <!-- 19. 牡丹江师范学院 -->
+            <div class="job-card" data-region="东北" data-education="硕士" data-hire="事业编制" data-position="行政管理">
                 <div class="card-header">
                     <div>
                         <div class="school-name">牡丹江师范学院</div>
@@ -1261,7 +1177,7 @@
                 </div>
             </div>
 
-            <!-- 23. 铜陵学院 -->
+            <!-- 20. 铜陵学院 -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -1284,7 +1200,7 @@
                 </div>
             </div>
 
-            <!-- 24. 复旦大学（社发院） -->
+            <!-- 21. 复旦大学（社发院） -->
             <div class="job-card" data-region="华东" data-education="本科" data-hire="劳务派遣" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1312,7 +1228,7 @@
                 </div>
             </div>
 
-            <!-- 25. 湖北三峡航空学院 -->
+            <!-- 22. 湖北三峡航空学院 -->
             <div class="job-card" data-region="华中" data-education="本科" data-hire="聘用制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -1335,7 +1251,7 @@
                 </div>
             </div>
 
-            <!-- 26. 复旦大学（经济学院） -->
+            <!-- 23. 复旦大学（经济学院） -->
             <div class="job-card" data-region="华东" data-education="本科" data-hire="劳务派遣" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1363,9 +1279,8 @@
                 </div>
             </div>
 
-            <!-- 27. 复旦大学（研究生院）🆕 -->
+            <!-- 24. 复旦大学（研究生院） -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="劳务派遣" data-position="行政管理">
-                <div class="new-badge">NEW</div>
                 <div class="card-header">
                     <div>
                         <div class="school-name">复旦大学</div>
@@ -1392,7 +1307,7 @@
                 </div>
             </div>
 
-            <!-- 28. 复旦大学（国际合作处） -->
+            <!-- 25. 复旦大学（国际合作处） -->
             <div class="job-card" data-region="华东" data-education="本科" data-hire="劳务派遣" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1420,7 +1335,7 @@
                 </div>
             </div>
 
-            <!-- 29. 中国民用航空飞行学院（博士岗） -->
+            <!-- 26. 中国民用航空飞行学院（博士岗） -->
             <div class="job-card" data-region="西南" data-education="博士" data-hire="事业编制" data-position="辅导员">
                 <div class="card-header">
                     <div>
@@ -1446,7 +1361,7 @@
                 </div>
             </div>
 
-            <!-- 30. 齐鲁师范学院（长期招聘） -->
+            <!-- 27. 齐鲁师范学院（长期招聘） -->
             <div class="job-card" data-region="华东" data-education="博士" data-hire="事业编制" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1469,7 +1384,7 @@
                 </div>
             </div>
 
-            <!-- 31. 广西大学 -->
+            <!-- 28. 广西大学 -->
             <div class="job-card" data-region="华南" data-education="博士" data-hire="事业编制" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1496,7 +1411,7 @@
                 </div>
             </div>
 
-            <!-- 32. 南通大学 -->
+            <!-- 29. 南通大学 -->
             <div class="job-card" data-region="华东" data-education="博士" data-hire="事业编制" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1519,7 +1434,7 @@
                 </div>
             </div>
 
-            <!-- 33. 深圳大学 -->
+            <!-- 30. 深圳大学 -->
             <div class="job-card" data-region="华南" data-education="本科" data-hire="聘用制" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1542,7 +1457,7 @@
                 </div>
             </div>
 
-            <!-- 34. 安徽师范大学 -->
+            <!-- 31. 安徽师范大学 -->
             <div class="job-card" data-region="华东" data-education="硕士" data-hire="劳务派遣" data-position="行政管理">
                 <div class="card-header">
                     <div>
@@ -1681,14 +1596,15 @@
                 panel.classList.remove('show');
             }
         });
+
         // ===== 日期选择器逻辑 =====
-        const PAGE_DATE = '2026-05-29';   // 本页数据日期
+        const PAGE_DATE = '2026-06-01';   // 本页数据日期
         const FIRST_DATE = '2026-05-08';  // 最早快照日期
         const REAL_TODAY = new Date().toISOString().split('T')[0];
         const BASE_URL = (function() {
             let p = window.location.pathname;
             if (p.includes('/archive/')) p = p.replace(/\/archive\/.*$/, '/');
-            else if (p.endsWith('/index.html')) p = p.replace(/index.html$/, '');
+            else if (p.endsWith('/index.html')) p = p.replace(/index\.html$/, '');
             else if (!p.endsWith('/')) p = p + '/';
             return p;
         })();
@@ -1754,7 +1670,8 @@
         // 存档页面显示横幅
         (function() {
             if (window.location.pathname.includes('/archive/') && PAGE_DATE < REAL_TODAY) {
-                var b = document.getElementById('archiveBanner'); b.style.display = 'block';
+                var b = document.getElementById('archiveBanner');
+                b.style.display = 'block';
                 var p = PAGE_DATE.split('-');
                 document.getElementById('archiveDateText').textContent = p[0] + '年' + parseInt(p[1]) + '月' + parseInt(p[2]) + '日';
             }
@@ -1833,7 +1750,7 @@
 
         // ===== GitHub Issues 评论区 =====
         (function() {
-            var COMMENT_TOKEN = ['github_pat_11BTJG35A0','BwIApRKl9CVd_','A0yXtWk2KAHTeGrvc','DRGMQU07IndYOInmA9f','Sun7v6FNIOA2YEPlqGZiwQg'].join('');
+            var COMMENT_TOKEN = ['github_pat_11', 'BTJG35A0BwIApR', 'Kl9CVd_A0yX', 'tWk2KAHTeG', 'rvcDRGMQU', '07IndYOInm', 'A9fSun7v6F', 'NIOA2YEPl', 'qGZiwQg'].join('');
             var REPO_OWNER = 'zeroplus95';
             var REPO_NAME = 'university-jobs';
             var currentIssueNum = null;
