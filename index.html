@@ -594,6 +594,7 @@
             .job-card { border-radius: 12px; }
             .header h1 { font-size: 1.3em; }
         }
+        .job-card { cursor: pointer; }
     </style>
 </head>
 <body>
@@ -618,7 +619,7 @@
         <div class="header">
             <h1><i class="fas fa-graduation-cap"></i> 高校行政岗招聘信息</h1>
             <p>每日更新 · 只展示仍在报名中的岗位</p>
-            <div class="update-time"><i class="fas fa-clock"></i> 更新时间：2026年6月1日 10:00</div>
+            <div class="update-time"><i class="fas fa-clock"></i> 更新时间：2026年6月2日 10:00</div>
 
         <!-- 日期选择器 -->
         <div class="date-picker-bar">
@@ -639,11 +640,11 @@
         <!-- 统计栏 -->
         <div class="stats-bar">
             <div class="stat-item">
-                <span class="stat-num" id="totalCount">42</span>
+                <span class="stat-num" id="totalCount">43</span>
                 <span class="stat-label">在招岗位</span>
             </div>
             <div class="stat-item">
-                <span class="stat-num" id="urgentCount" style="color:#ff6b6b">2</span>
+                <span class="stat-num" id="urgentCount" style="color:#ff6b6b">4</span>
                 <span class="stat-label">3天内截止</span>
             </div>
             <div class="stat-item">
@@ -708,31 +709,36 @@
         <!-- 岗位卡片 -->
         <div class="cards-grid" id="cardsGrid">
 
-            <!-- 1. 盐城工业职业技术学院 - 今天截止！ -->
-            <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
-                <div class="new-badge" style="background:#e74c3c;">紧急</div>
+            <!-- NEW 1. 南京大学苏州校区 -->
+            <div class="job-card" data-region="华东" data-education="本科" data-hire="聘用制" data-position="行政管理">
+                <div class="new-badge">NEW</div>
                 <div class="card-header">
                     <div>
-                        <div class="school-name">盐城工业职业技术学院</div>
+                        <div class="school-name">南京大学苏州校区</div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">双一流</span>
+                        </div>
                     </div>
-                    <span class="hire-type-badge badge-bianzhi">事业编制</span>
+                    <span class="hire-type-badge badge-pinyong">聘用制</span>
                 </div>
                 <div class="card-body">
-                    <div class="position-name">专职辅导员</div>
+                    <div class="position-name">政府管理学院办公室文员</div>
                     <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">5名</span></div>
-                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士研究生</span></div>
-                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">事业单位待遇</span></div>
-                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">中共党员</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">本科及以上</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">按规定执行</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">江苏苏州</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">派遣/承揽</span></div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6月1日16:00截止（今天！）</div>
-                    <a href="https://www.ycpc.edu.cn/2026/0522/c1040a62915/page.htm" target="_blank" class="apply-link">查看详情</a>
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月5日截止</div>
+                    <a href="https://rczp.nju.edu.cn/glgwjqt/sybzry/bwry/20260529/i393687.html" target="_blank" class="apply-link">查看详情</a>
                 </div>
             </div>
 
-            <!-- 2. 西安科技大学 - 今天截止报名！ -->
+            <!-- 1. 西安科技大学 -->
             <div class="job-card" data-region="西北" data-education="硕士" data-hire="事业编制" data-position="辅导员">
                 <div class="new-badge" style="background:#e74c3c;">紧急</div>
                 <div class="card-header">
@@ -753,6 +759,30 @@
                 <div class="card-footer">
                     <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6月1日-6月8日报名（今天开始！）</div>
                     <a href="https://rsc.xust.edu.cn/info/1038/3491.htm" target="_blank" class="apply-link">查看详情</a>
+                </div>
+            </div>
+
+            <!-- NEW 2. 安徽理工大学 -->
+            <div class="job-card" data-region="华东" data-education="硕士" data-hire="事业编制" data-position="辅导员">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">安徽理工大学</div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">事业编制</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">专职辅导员（3个岗位）</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">13名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士及以上</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">事业单位待遇</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">安徽淮南</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6月7日24:00截止</div>
+                    <a href="https://hrss.ah.gov.cn/zxzx/ztzl/ahsszsydwgkzpzl/ssgxgkzp/80789131.html" target="_blank" class="apply-link">查看详情</a>
                 </div>
             </div>
 
@@ -1894,7 +1924,7 @@
         });
 
         // ===== 日期选择器逻辑 =====
-        const PAGE_DATE = '2026-06-01';   // 本页数据日期
+        const PAGE_DATE = '2026-06-02';   // 本页数据日期
         const FIRST_DATE = '2026-05-08';  // 最早快照日期
         const REAL_TODAY = new Date().toISOString().split('T')[0];
         const BASE_URL = (function() {
@@ -2137,6 +2167,17 @@
                 document.getElementById('comment-char-count').textContent = this.value.length + '/500';
             });
         })();
+    </script>
+    <script>
+        // Make entire card clickable - navigates to job detail page
+        document.querySelectorAll('.job-card').forEach(function(card) {
+            var link = card.querySelector('.apply-link');
+            if (!link) return;
+            // Prevent card click when clicking the apply button directly
+            link.addEventListener('click', function(e) { e.stopPropagation(); });
+            // Clicking anywhere else on the card opens the detail page
+            card.addEventListener('click', function() { link.click(); });
+        });
     </script>
 </body>
 </html>
