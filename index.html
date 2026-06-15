@@ -649,7 +649,7 @@
                 <span class="stat-label">浠婃棩鎴</span>
             </div>
             <div class="stat-item">
-                <span class="stat-num" style="color:#ffa502">3</span>
+                <span class="stat-num" id="newCount" style="color:#ffa502">7</span>
                 <span class="stat-label">鏈湡鏂板</span>
             </div>
             <div class="stat-item">
@@ -2091,6 +2091,14 @@
         datePicker.min = FIRST_DATE;
         datePicker.max = REAL_TODAY;
 
+        // 鍔ㄦ€佹洿鏂版湰鏈熸柊澧炵粺璁?
+        (function() {
+            var newBadges = document.querySelectorAll('.new-badge');
+            var newCountEl = document.getElementById('newCount');
+            if (newCountEl && newBadges.length > 0) {
+                newCountEl.textContent = newBadges.length;
+            }
+        })();
         // Toast鎻愮ず
         function showToast(msg) {
             var t = document.getElementById('dateToast') || (function() {
