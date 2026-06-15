@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楂樻牎琛屾斂宀楁嫑鑱樹俊鎭?- 2026骞?鏈?5鏃?/title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container { max-width: 1200px; margin:0 auto; }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .update-time {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 8px;
+        }
+
+        /* 缁熻鏍?*/
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .stat-item .stat-num {
+            font-size: 1.6em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-item .stat-label {
+            font-size: 0.75em;
+            opacity: 0.85;
+        }
+
+        /* 绛涢€夐潰鏉?*/
+        .filter-panel {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .filter-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .filter-row:last-child { margin-bottom: 0; }
+
+        .filter-label {
+            font-weight: 600;
+            color: #555;
+            font-size: 0.85em;
+            min-width: 70px;
+            flex-shrink: 0;
+        }
+
+        .filter-btn {
+            padding: 5px 14px;
+            border: 2px solid #764ba2;
+            background: white;
+            color: #764ba2;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.82em;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #764ba2;
+            color: white;
+        }
+
+        .filter-result {
+            font-size: 0.85em;
+            color: #764ba2;
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .filter-result span {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .reset-btn {
+            padding: 5px 14px;
+            border: 2px solid #e74c3c;
+            background: white;
+            color: #e74c3c;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.82em;
+            transition: all 0.3s;
+            margin-left: auto;
+        }
+
+        .reset-btn:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* 鍗＄墖缃戞牸 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 18px;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            padding: 16px 18px 12px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .school-name {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1.3;
+        }
+
+        .school-tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .tag {
+            font-size: 0.65em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .tag-985 { background: #ff6b6b; color: white; }
+        .tag-211 { background: #ffa502; color: white; }
+        .tag-double-first { background: #7c5cfc; color: white; }
+        .tag-ministry { background: #2ed573; color: white; }
+        .tag-private { background: #a29bfe; color: white; }
+
+        .hire-type-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .badge-bianzhi { background: #fff0f0; color: #e74c3c; border: 1px solid #e74c3c; }
+        .badge-pinyong { background: #f0f8ff; color: #3498db; border: 1px solid #3498db; }
+        .badge-laowu { background: #fff8f0; color: #f39c12; border: 1px solid #f39c12; }
+        .badge-beian { background: #f0fff0; color: #27ae60; border: 1px solid #27ae60; }
+        .badge-hetong { background: #f8f0ff; color: #8e44ad; border: 1px solid #8e44ad; }
+
+        .card-body {
+            padding: 14px 18px;
+        }
+
+        .position-name {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 12px;
+        }
+
+        .info-item {
+            font-size: 0.82em;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .info-item i {
+            width: 14px;
+            text-align: center;
+            color: #764ba2;
+            font-size: 0.9em;
+        }
+
+        .info-item .value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .card-footer {
+            padding: 10px 18px;
+            background: #fafafa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .deadline {
+            font-size: 0.85em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .deadline-urgent { color: #e74c3c; }
+        .deadline-normal { color: #27ae60; }
+        .deadline-long { color: #3498db; }
+
+        .deadline i { font-size: 0.9em; }
+
+        .apply-link {
+            display: inline-block;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.82em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .apply-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(118, 75, 162, 0.4);
+        }
+
+        /* NEW鏍囪 */
+        .new-badge {
+            position: absolute;
+            top: 12px;
+            right: -28px;
+            background: #e74c3c;
+            color: white;
+            padding: 2px 32px;
+            font-size: 0.7em;
+            font-weight: 700;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 8px rgba(231,76,60,0.4);
+            animation: pulse-new 2s infinite;
+        }
+
+        @keyframes pulse-new {
+            0%, 100% { opacity:1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* 鏃ユ湡閫夋嫨鍣?*/
+        .date-picker-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .date-picker-label {
+            color: white;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .date-input {
+            padding: 4px 10px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .date-input:focus {
+            border-color: #764ba2;
+        }
+
+        .date-input::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(30%);
+        }
+
+        .date-today-btn {
+            padding: 4px 12px;
+            border: 2px solid rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .date-today-btn:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .date-nav-btn {
+            width: 28px;
+            height: 28px;
+            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.75em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .date-nav-btn:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        .date-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* 鍘嗗彶蹇収鎻愮ず */
+        .archive-banner {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .archive-banner i { margin-right: 6px; }
+        .archive-banner a { color: white; font-weight: 700; text-decoration: underline; }
+
+        /* 鐧诲綍閬僵 */
+        .login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.4s, visibility 0.4s;
+        }
+        .login-overlay.hidden { opacity: 0; visibility: hidden; }
+        .login-card {
+            background: white; border-radius: 20px; padding: 40px 36px;
+            width: 360px; max-width: 90vw; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .login-card .lock-icon {
+            width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+        }
+        .login-card .lock-icon i { color: white; font-size: 1.5em; }
+        .login-card h3 { color: #333; font-size: 1.2em; margin-bottom: 6px; }
+        .login-card .sub { color: #999; font-size: 0.82em; margin-bottom: 20px; }
+        .login-card .input-group {
+            position: relative; margin-bottom: 16px;
+        }
+        .login-card .input-group input {
+            width: 100%; padding: 12px 44px 12px 16px;
+            border: 2px solid #e0e0e0; border-radius: 12px;
+            font-size: 0.95em; outline: none; transition: border-color 0.3s;
+        }
+        .login-card .input-group input:focus { border-color: #764ba2; }
+        .login-card .input-group .toggle-pw {
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: #999; cursor: pointer; font-size: 0.9em;
+        }
+        .login-card .login-btn {
+            width: 100%; padding: 12px; border: none; border-radius: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; font-size: 1em; font-weight: 600; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .login-card .login-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(118,75,162,0.4); }
+        .login-card .login-error {
+            color: #e74c3c; font-size: 0.82em; margin-top: 10px; min-height: 20px;
+        }
+
+        /* 寰俊璁㈤槄 */
+        .sub-float {
+            position: fixed; bottom: 24px; right: 24px; z-index: 9998;
+            display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+        }
+        .sub-float-btn {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: linear-gradient(135deg, #07c160, #06ad56);
+            color: white; border: none; cursor: pointer;
+            font-size: 1.3em; box-shadow: 0 4px 16px rgba(7,193,96,0.4);
+            transition: transform 0.3s; animation: pulse-sub 2s infinite;
+        }
+        @keyframes pulse-sub { 0%,100%{box-shadow:0 4px 16px rgba(7,193,96,0.4)} 50%{box-shadow:0 4px 28px rgba(7,193,96,0.7)} }
+        .sub-float-btn:hover { transform: scale(1.08); }
+        .sub-panel {
+            background: white; border-radius: 16px; padding: 24px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15); text-align: center;
+            width: 280px; display: none; animation: slideUp 0.3s ease;
+        }
+        .sub-panel.show { display: block; }
+        @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        .sub-panel h4 { color: #333; font-size: 1em; margin-bottom: 4px; }
+        .sub-panel .sub-desc { color: #999; font-size: 0.78em; margin-bottom: 14px; }
+        .sub-panel .qrcode-wrap {
+            width: 160px; height: 160px; margin: 0 auto 10px;
+            border: 3px solid #07c160; border-radius: 12px; padding: 4px;
+            display: flex; align-items: center; justify-content: center;
+            background: #f9f9f9;
+        }
+        .sub-panel .qrcode-wrap img { width: 100%; height: 100%; }
+        .sub-panel .sub-steps { text-align: left; font-size: 0.75em; color: #666; line-height: 1.8; }
+        .sub-panel .sub-steps i { color: #07c160; margin-right: 4px; }
+        .sub-panel .close-sub {
+            position: absolute; top: 10px; right: 14px;
+            background: none; border: none; font-size: 1.1em; color: #999; cursor: pointer;
+        }
+        .sub-panel { position: relative; }
+
+        @media (max-width: 768px) {
+            .sub-float { bottom: 16px; right: 16px; }
+            .sub-float-btn { width: 44px; height: 44px; font-size: 1.1em; }
+        }
+
+        /* 璇勮鍖?*/
+        .comment-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .comment-section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #e8d5f5;
+        }
+
+        .comment-section-header i { font-size: 1.3em; color: #764ba2; }
+        .comment-section-header h3 { font-size: 1.1em; color: #2c3e50; font-weight: 700; }
+        .comment-section-header .comment-hint { font-size: 0.78em; color: #999; margin-left: auto; }
+        .comment-section-header .comment-count { font-size: 0.78em; color: #764ba2; background: #f3e8ff; padding: 2px 10px; border-radius: 10px; margin-left: 8px; }
+        .comment-section-header .comment-refresh { font-size: 0.78em; color: #764ba2; background: none; border: 1px solid #e8d5f5; padding: 2px 10px; border-radius: 10px; cursor: pointer; margin-left: 6px; transition: background 0.2s; }
+        .comment-section-header .comment-refresh:hover { background: #f3e8ff; }
+
+        .comments-list { margin-bottom: 20px; max-height: 500px; overflow-y: auto; }
+        .comment-empty, .comment-loading, .comment-error, .comment-setup { text-align: center; color: #999; padding: 30px 10px; font-size: 0.9em; }
+        .comment-error { color: #e74c3c; }
+
+        .comment-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f0e6f6; }
+        .comment-item:last-child { border-bottom: none; }
+
+        .comment-avatar { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85em; font-weight: 600; }
+        .comment-avatar img { width: 36px; height: 36px; border-radius: 50%; }
+
+        .comment-body { flex: 1; min-width: 0; }
+        .comment-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .comment-nick { font-weight: 600; color: #764ba2; font-size: 0.9em; }
+        .comment-time { font-size: 0.75em; color: #bbb; }
+        .comment-text { font-size: 0.9em; color: #444; line-height: 1.6; word-break: break-word; }
+
+        .comment-form { margin-top: 16px; }
+        .comment-form-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        .comment-form-row input { flex: 1; padding: 10px 14px; border: 1.5px solid #e8d5f5; border-radius: 10px; font-size: 0.88em; outline: none; transition: border-color 0.2s; background: #faf5ff; }
+        .comment-form-row input:focus { border-color: #764ba2; }
+        .comment-form textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #e8d5f5; border-radius: 10px; font-size: 0.88em; resize: vertical; min-height: 80px; outline: none; transition: border-color 0.2s; background: #faf5ff; font-family: inherit; }
+        .comment-form textarea:focus { border-color: #764ba2; }
+
+        .comment-form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+        .comment-char-count { font-size: 0.78em; color: #bbb; }
+        .comment-submit-btn { padding: 8px 24px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 10px; font-size: 0.88em; cursor: pointer; transition: opacity 0.2s; }
+        .comment-submit-btn:hover { opacity: 0.9; }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* 搴曢儴 */
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            padding: 30px 0 10px;
+            font-size: 0.85em;
+        }
+
+        .footer a { color: rgba(255,255,255,0.9); }
+
+        .no-results {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            padding: 60px 20px;
+            font-size: 1.1em;
+        }
+
+        /* 绉诲姩绔€傞厤 */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5em; }
+            .header p { font-size: 0.9em; }
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .stats-bar { gap: 8px; }
+            .stat-item { min-width: 80px; padding: 8px 12px; }
+            .stat-item .stat-num { font-size: 1.3em; }
+            .filter-row { gap: 6px; }
+            .filter-btn { padding: 4px 10px; font-size: 0.78em; }
+            .info-grid { grid-template-columns: 1fr; }
+            .card-header { flex-direction: column; gap: 6px; }
+            .date-picker-bar { flex-wrap: wrap; justify-content: center; padding: 6px 10px; gap: 6px; }
+            .date-picker-label { font-size: 0.8em; }
+            .date-input { font-size: 0.8em; padding: 3px 8px; }
+        }
+
+        @media (max-width: 400px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            .job-card { border-radius: 12px; }
+            .header h1 { font-size: 1.3em; }
+        }
+        .job-card { cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <!-- 鐧诲綍楠岃瘉 -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-card">
+            <div class="lock-icon"><i class="fas fa-lock"></i></div>
+            <h3>楂樻牎琛屾斂宀楁嫑鑱樹俊鎭?/h3>
+            <p class="sub">璇疯緭鍏ヨ闂瘑鐮?/p>
+            <div class="input-group">
+                <input type="password" id="loginPw" placeholder="杈撳叆瀵嗙爜" onkeydown="if(event.key==='Enter')doLogin()">
+                <button class="toggle-pw" onclick="togglePw()" title="鏄剧ず/闅愯棌"><i class="fas fa-eye" id="pwIcon"></i></button>
+            </div>
+            <button class="login-btn" onclick="doLogin()">楠岃瘉杩涘叆</button>
+            <div class="login-error" id="loginError"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 椤靛ご -->
+        <div class="header">
+            <h1><i class="fas fa-graduation-cap"></i> 楂樻牎琛屾斂宀楁嫑鑱樹俊鎭?/h1>
+            <p>姣忔棩鏇存柊 路 鍙睍绀轰粛鍦ㄦ姤鍚嶄腑鐨勫矖浣?/p>
+            <div class="update-time"><i class="fas fa-clock"></i> 鏇存柊鏃堕棿锛?026骞?鏈?5鏃?09:00</div>
+
+        <!-- 鏃ユ湡閫夋嫨鍣?-->
+        <div class="date-picker-bar">
+            <span class="date-picker-label"><i class="fas fa-calendar-alt"></i> 鏌ョ湅鏃ユ湡</span>
+            <input type="date" id="datePicker" class="date-input" value="2026-06-15" min="2026-05-08" max="2026-06-15">
+            <button class="date-today-btn" onclick="goToday()">浠婂ぉ</button>
+            <button class="date-nav-btn" onclick="goPrev()"><i class="fas fa-chevron-left"></i></button>
+            <button class="date-nav-btn" onclick="goNext()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        </div>
+
+        <!-- 鍘嗗彶蹇収鎻愮ず锛堜粎瀛樻。椤甸潰鏄剧ず锛?-->
+        <div class="archive-banner" id="archiveBanner">
+            <i class="fas fa-history"></i>
+            杩欐槸 <strong id="archiveDateText"></strong> 鐨勫巻鍙插揩鐓э紝閮ㄥ垎宀椾綅鍙兘宸叉埅姝€?a href="javascript:goToday()">鏌ョ湅浠婃棩鏈€鏂版暟鎹?鈫?/a>
+        </div>
+
+        <!-- 缁熻鏍?-->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-num" id="totalCount">43</span>
+                <span class="stat-label">鍦ㄦ嫑宀椾綅</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" id="urgentCount" style="color:#ff6b6b">10</span>
+                <span class="stat-label">浠婃棩鎴</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color:#ffa502">3</span>
+                <span class="stat-label">鏈湡鏂板</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">680+</span>
+                <span class="stat-label">鎷涜仒鎬讳汉鏁?/span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num"><i class="fas fa-eye" style="font-size:0.7em;color:rgba(255,255,255,0.6)"></i> <span id="busuanzi_value_page_pv">-</span></span>
+                <span class="stat-label">鏈〉娴忚</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num"><i class="fas fa-users" style="font-size:0.7em;color:rgba(255,255,255,0.6)"></i> <span id="busuanzi_value_site_uv">-</span></span>
+                <span class="stat-label">绱璁垮</span>
+            </div>
+        </div>
+
+        <!-- 绛涢€夐潰鏉?-->
+        <div class="filter-panel">
+            <div class="filter-row">
+                <span class="filter-label"><i class="fas fa-map-marker-alt"></i> 鍦板尯</span>
+                <button class="filter-btn active" data-filter="region" data-value="all">鍏ㄩ儴</button>
+                <button class="filter-btn" data-filter="region" data-value="鍗庝笢">鍗庝笢</button>
+                <button class="filter-btn" data-filter="region" data-value="鍗庡寳">鍗庡寳</button>
+                <button class="filter-btn" data-filter="region" data-value="鍗庝腑">鍗庝腑</button>
+                <button class="filter-btn" data-filter="region" data-value="鍗庡崡">鍗庡崡</button>
+                <button class="filter-btn" data-filter="region" data-value="瑗垮崡">瑗垮崡</button>
+                <button class="filter-btn" data-filter="region" data-value="瑗垮寳">瑗垮寳</button>
+                <button class="filter-btn" data-filter="region" data-value="涓滃寳">涓滃寳</button>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label"><i class="fas fa-graduation-cap"></i> 瀛﹀巻</span>
+                <button class="filter-btn active" data-filter="education" data-value="all">鍏ㄩ儴</button>
+                <button class="filter-btn" data-filter="education" data-value="鏈">鏈鍙姤</button>
+                <button class="filter-btn" data-filter="education" data-value="纭曞＋">纭曞＋鍙姤</button>
+                <button class="filter-btn" data-filter="education" data-value="鍗氬＋">鍗氬＋</button>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label"><i class="fas fa-briefcase"></i> 鑱樼敤</span>
+                <button class="filter-btn active" data-filter="hire" data-value="all">鍏ㄩ儴</button>
+                <button class="filter-btn" data-filter="hire" data-value="浜嬩笟缂栧埗">浜嬩笟缂栧埗</button>
+                <button class="filter-btn" data-filter="hire" data-value="鑱樼敤鍒?>鑱樼敤鍒?/button>
+                <button class="filter-btn" data-filter="hire" data-value="鍔冲姟娲鹃仯">鍔冲姟娲鹃仯</button>
+                <button class="filter-btn" data-filter="hire" data-value="澶囨鍒?>澶囨鍒?/button>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label"><i class="fas fa-tag"></i> 绫诲埆</span>
+                <button class="filter-btn active" data-filter="position" data-value="all">鍏ㄩ儴</button>
+                <button class="filter-btn" data-filter="position" data-value="琛屾斂绠＄悊">琛屾斂绠＄悊</button>
+                <button class="filter-btn" data-filter="position" data-value="杈呭鍛?>杈呭鍛?/button>
+                <button class="filter-btn" data-filter="position" data-value="鏁欒緟">鏁欒緟</button>
+            </div>
+            <div class="filter-row" style="justify-content:space-between;">
+                <div class="filter-result">绛涢€夌粨鏋滐細<span id="filteredCount">53</span> 涓矖浣?/div>
+                <button class="reset-btn" onclick="resetFilters()"><i class="fas fa-redo"></i> 閲嶇疆绛涢€?/button>
+            </div>
+        </div>
+
+        <!-- 宀椾綅鍗＄墖 -->
+        <div class="cards-grid" id="cardsGrid">
+
+            <!-- 0609-1. 娴庡崡澶у -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">娴庡崡澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">灞变笢鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍏紑鎷涜仒宸ヤ綔浜哄憳锛堣緟瀵煎憳锛?5鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">15鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鐮旂┒鐢?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">灞变笢娴庡崡</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?鏃?:00-15鏃?6:00鎶ュ悕锛堜粖澶╂埅姝紒锛?/div>
+                    <a href="http://zp.ujn.edu.cn" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0609-2. 闄曡タ绉戞妧澶у - 鎶ュ悕杩涜涓?-->
+            <div class="job-card" data-region="瑗垮寳" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">闄曡タ绉戞妧澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">闄曡タ鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">浜轰簨浠ｇ悊</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙鐢?鍚?濂?鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">10鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜轰簨浠ｇ悊寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">闄曡タ瑗垮畨</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?2鏃?:00-18鏃?8:00鎶ュ悕锛堟姤鍚嶈繘琛屼腑锛?/div>
+                    <a href="https://yiban.sust.edu.cn/zhaopin" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0609-4. 杈藉畞鍐滀笟鑱屼笟鎶€鏈闄?-->
+            <div class="job-card" data-region="涓滃寳" data-education="鏈" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">杈藉畞鍐滀笟鑱屼笟鎶€鏈闄?/div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">杈藉畞鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍏紑鎷涜仒宸ヤ綔浜哄憳锛堝惈杈呭鍛?绠＄悊宀楋紝65鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">65鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈/纭曞＋</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">杈藉畞钀ュ彛</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?5鏃ユ埅姝紙浠婂ぉ锛侊級</div>
+                    <a href="http://47.93.251.19:8871/zp.html" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0609-5. 鍖椾含澶у鐢靛瓙瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庡寳" data-education="鏈" data-hire="鍔冲姟娲鹃仯" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍖椾含澶у鐢靛瓙瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">鍔冲姟娲鹃仯</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">琛屾斂鍔╃悊</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">闈㈣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">鍖椾含娴锋穩</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?2鏃ユ埅姝?/div>
+                    <a href="https://hr.pku.edu.cn/rczp/xzjf/ldhtzp/64a41aff2197438b8b6566c1f6aa0b8e.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0610-3. 骞垮窞姘戣埅鑱屼笟鎶€鏈闄?-->
+            <div class="job-card" data-region="鍗庡崡" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">骞垮窞姘戣埅鑱屼笟鎶€鏈闄?/div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">浜ら€氳繍杈撻儴灞?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍏氭斂绠＄悊鍙婂叾浠栦笓鎶€浜哄憳锛?鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">8鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">骞夸笢骞垮窞</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?5鏃ユ埅姝紙浠婂ぉ锛侊級</div>
+                    <a href="https://hr.gcac.edu.cn" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0610-4. 骞夸笢宸ョ▼鑱屼笟鎶€鏈闄?-->
+            <div class="job-card" data-region="鍗庡崡" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">骞夸笢宸ョ▼鑱屼笟鎶€鏈闄?/div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">骞夸笢鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">闈炰簨涓氱紪鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛橈紙B1/B2/B3宀楋紝16鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">16鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鐮旂┒鐢?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">绾?2涓?骞?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">骞垮窞/娓呰繙</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-clock"></i> 6鏈?鏃ヨ捣鎶ュ悕</div>
+                    <a href="https://www.gaoxiaojob.com/job/detail/2201059.html" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0610-5. 鍗楀畞瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庡崡" data-education="鏈" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍗楀畞瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">骞胯タ鍖哄睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛?鏈哄叧閮ㄩ棬鑱屽憳</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">鑻ュ共鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">骞胯タ鍗楀畞</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 杈呭鍛?鑱屽憳6鏈?5鏃ユ埅姝紙浠婂ぉ锛侊級</div>
+                    <a href="http://hr.nnxy.cn/recruit" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0610-6. 灞变笢甯堣寖澶у -->
+            <div class="job-card" data-region="鍗庝笢" data-education="鍗氬＋" data-hire="浜嬩笟缂栧埗" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">灞变笢甯堣寖澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">灞变笢鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍗氬＋鏁欏笀/鏁欒緟浜哄憳/杈呭鍛?绠＄悊浜哄憳锛?鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">5鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鍗氬＋鐮旂┒鐢?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">灞变笢娴庡崡</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 闀挎湡鎷涜仒 / 12鏈?1鏃?/div>
+                    <a href="http://www.rsc.sdnu.edu.cn/info/1004/5863.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0611-1. 涓浗浼犲獟澶у -->
+            <div class="job-card" data-region="鍗庡寳" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">涓浗浼犲獟澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛?3鍚?绠＄悊宀?鍚嶏紙鍏?1鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">21鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">杈呭鍛樹簨涓氱紪/绠＄悊宀楀弬缂?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">鍖椾含鏈濋槼</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?7鏃ユ埅姝?/div>
+                    <a href="https://jobs.cuc.edu.cn" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0611-2. 鍥涘窛澶у -->
+            <div class="job-card" data-region="瑗垮崡" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍥涘窛澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鏍¤仒闈炵紪</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鏍¤仒闈炰簨涓氱紪鍒跺矖浣嶏紙绠＄悊17+涓撴妧10锛?7鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">27鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈/纭曞＋</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜旈櫓涓€閲懧锋寜鏍¤仒鏍囧噯</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">鍥涘窛鎴愰兘</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?3鏃ユ埅姝?/div>
+                    <a href="https://recruitment.scu.edu.cn/#/" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0611-3. 鍖椾含鍖栧伐澶у -->
+            <div class="job-card" data-region="鍗庡寳" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍖椾含鍖栧伐澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">绗笁鎵规鏁欏笀鍙婄爺绌剁敓杈呭鍛橈紙24鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">24鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">鍖椾含鏈濋槼/鏄屽钩</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?6鏃ユ埅姝?/div>
+                    <a href="https://hrzp.buct.edu.cn/zp.html#/" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0611-4. 寰愬窞鍖荤澶у -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">寰愬窞鍖荤澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">姹熻嫃鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍏紑鎷涜仒涓撹亴杈呭鍛橈紙12鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">12鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">涓叡鍏氬憳路鏈嶅姟4骞翠互涓?/span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?5鏃?6:00鎴锛堜粖澶╋紒锛?/div>
+                    <a href="https://rs.jshrss.jiangsu.gov.cn/index/f/RCRS_0056" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0611-5. 闆嗙編澶у璇氭瘏瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">闆嗙編澶у璇氭瘏瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-private">鐙珛瀛﹂櫌</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛橈紙11鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">11鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">绂忓缓鍘﹂棬</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?5鏃ユ埅姝紙浠婂ぉ锛侊級</div>
+                    <a href="https://cyhr.jmu.edu.cn/rczp/gkzp.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 0611-6. 涓婃捣绔嬩俊浼氳閲戣瀺瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">涓婃捣绔嬩俊浼氳閲戣瀺瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">涓婃捣甯傚睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛橈紙6鍚嶏級+ 鏁欏笀锛?2鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">38鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">涓婃捣</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 杈呭鍛?鏈?0鏃ユ埅姝?/div>
+                    <a href="https://rsj.sh.gov.cn/tzpgg_17408/20260211/t0035_1438694.html" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 3. 骞夸笢璐㈢粡澶у -->
+            <div class="job-card" data-region="鍗庡崡" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">骞夸笢璐㈢粡澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">骞夸笢鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙8鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">8鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">骞夸笢骞垮窞</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?0鏃?16鏃ユ姤鍚嶏紙鎶ュ悕杩涜涓級</div>
+                    <a href="https://rsc.gdufe.edu.cn/zpwz" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- NEW 0615-1. 鏃犻敗绉戞妧鑱屼笟瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="鏈" data-hire="浜嬩笟缂栧埗" data-position="琛屾斂绠＄悊">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鏃犻敗绉戞妧鑱屼笟瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">鏃犻敗甯傚睘鍏姙</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍏紑鎷涜仒宸ヤ綔浜哄憳锛堝惈琛屾斂/鏁欒緟锛?鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">6鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">姹熻嫃鏃犻敗</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?6鏃?6:00鎴</div>
+                    <a href="http://www.ksbm.com" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- NEW 0615-2. 鍘﹂棬澶у鍢夊簹瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍘﹂棬澶у鍢夊簹瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-double-first">鐙珛瀛﹂櫌</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樹换鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛橈紙鑻ュ共鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">鑻ュ共鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">8000+/鏈?5涓囪ˉ璐?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">绂忓缓鍘﹂棬</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 鎷涙弧鍗虫</div>
+                    <a href="https://hr.xujc.com/zhaopin/other/238.html" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 11. 瀹夊窘宸ョ▼澶у -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">瀹夊窘宸ョ▼澶у</div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙14鍚嶏紝鍗氬＋4宀?纭曞＋4宀楋級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">14鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋/鍗氬＋</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">瀹夊窘鑺滄箹</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?6鏃?8:00鎴</div>
+                    <a href="https://www.ahpu.edu.cn/2026/0602/c5a272343/page.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 21. 閾滈櫟瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">閾滈櫟瀛﹂櫌</div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙纭曞＋4鍚?鍗氬＋2鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">6鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋/鍗氬＋</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">瀹夊窘閾滈櫟</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?5鏃ユ埅姝紙浠婂ぉ锛侊級</div>
+                    <a href="https://www.tlu.edu.cn/2026/0525/c4129a128893/page.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 22. 涓婃捣鍋ュ悍鍖诲闄?-->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">涓婃捣鍋ュ悍鍖诲闄?/div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙2鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">2鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">涓婃捣</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?5鏃ユ埅姝紙浠婂ぉ锛侊級</div>
+                    <a href="https://rsj.sh.gov.cn/tzpgg_17408/20260522/t0035_1440923.html" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 23. 娌冲崡甯堣寖澶у -->
+            <div class="job-card" data-region="鍗庝腑" data-education="鍗氬＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">娌冲崡甯堣寖澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">娌冲崡鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙鍗氬＋锛?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">5鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈/纭曞＋/鍗氬＋</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">涓叡鍏氬憳路2骞村厷榫?/span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?5鏃?8:00鎴锛堜粖澶╋紒锛?/div>
+                    <a href="https://www.htu.edu.cn/rsc/2026/0527/c7790a386834/page.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 24. 鍖椾含澶у鍖诲閮?-->
+            <div class="job-card" data-region="鍗庡寳" data-education="鏈" data-hire="鍔冲姟娲鹃仯" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍖椾含澶у鍖诲閮?/div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">鍔冲姟娲鹃仯</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">瀛︾寤鸿鍔炲叕瀹ょ患鍚堣鏀夸簨鍔″矖</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">闈㈣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">鍖椾含娴锋穩</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?2鏃ユ埅姝?/div>
+                    <a href="https://rsc.bjmu.edu.cn/rczp/jfxz/8007843edce049f694b2a2c7dd60a892.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 25. 鍖椾含绉戞妧鑱屼笟澶у -->
+            <div class="job-card" data-region="鍗庡寳" data-education="鍗氬＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍖椾含绉戞妧鑱屼笟澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">鍖椾含甯傚睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛樺矖锛堝崥澹級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鍗氬＋鐮旂┒鐢?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">1987骞?鏈堝悗鍑虹敓</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?4鏃?6:30鎴</div>
+                    <a href="https://www.beijing.gov.cn/gongkai/rsxx/sydwzp/202605/t20260528_4669843.html" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 26. 姹犲窞瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">姹犲窞瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">瀹夊窘鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙鐢?濂?鍗氬＋锛?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">12鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋/鍗氬＋</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">涓叡鍏氬憳路瀛︾敓骞查儴</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?7鏃ユ埅姝?/div>
+                    <a href="https://www.czu.edu.cn/info/1035/22692.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 27. 澶嶆棪澶у锛堢ぞ鍙戦櫌锛?-->
+            <div class="job-card" data-region="鍗庝笢" data-education="鏈" data-hire="鍔冲姟娲鹃仯" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">澶嶆棪澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">鍔冲姟娲鹃仯</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">绀惧彂闄⒙疯鏀跨鐞嗗矖</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">涓婃捣鏉ㄦ郸鍖?/span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 6鏈?5鏃ユ埅姝紙浠婂ぉ锛侊級</div>
+                    <a href="http://zp.fudan.edu.cn" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 28. 鍗椾含浼犲獟瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍗椾含浼犲獟瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-private">姘戝姙鏈</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙瀛︾敓宸ヤ綔澶勶紝鑻ュ共鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">闈㈣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">姹熻嫃鍗椾含</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">涓叡鍏氬憳浼樺厛</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-calendar-check"></i> 7鏈?1鏃ユ埅姝?/div>
+                    <a href="mailto:rsczp@cucn.edu.cn" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 29. 涓婃捣搴旂敤鎶€鏈ぇ瀛?-->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">涓婃捣搴旂敤鎶€鏈ぇ瀛?/div>
+                        <div class="school-tags">
+                            <span class="tag tag-double-first">鍏姙鏈</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙鑻ュ共鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋/鍗氬＋</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">涓婃捣</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">涓叡鍏氬憳</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-calendar-check"></i> 6鏈?0鏃ユ埅姝?/div>
+                    <a href="https://www.sit.edu.cn/info/1071/130577.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 30. 骞垮窞宸ュ晢瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庡崡" data-education="鏈" data-hire="鍚堝悓鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">骞垮窞宸ュ晢瀛﹂櫌锛堢户鏁欎簩閮級</div>
+                        <div class="school-tags">
+                            <span class="tag tag-private">姘戝姙鏈</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-hetong">鍚堝悓鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛橈紙2鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">2鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">闈㈣路浜旈櫓涓€閲?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">骞夸笢骞垮窞</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-calendar-check"></i> 6鏈?0鏃ユ埅姝?/div>
+                    <a href="https://www.gaoxiaojob.com/announcement/detail/389462.html" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 31. 涓婃捣鍩庡缓鑱屼笟瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="鏈" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">涓婃捣鍩庡缓鑱屼笟瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">涓婃捣甯傚睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">4鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">涓婃捣鏉炬睙鍖?/span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-clock"></i> 6鏈?0鏃ユ埅姝?/div>
+                    <a href="https://rsj.sh.gov.cn/tzpgg_17408/20260509/t0035_1440589.html" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 32. 婀栧寳涓夊场鑸┖瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝腑" data-education="鏈" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">婀栧寳涓夊场鑸┖瀛﹂櫌</div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛樺矖/琛屾斂宀?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">16鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">杈呭鍛?-9涓?骞?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">婀栧寳瀹滄槍</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-clock"></i> 6鏈?0鏃ユ埅姝?/div>
+                    <a href="https://www.tgai.edu.cn/info/1771/4491.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 33. 璐靛窞鐞嗗伐瀛﹂櫌 -->
+            <div class="job-card" data-region="瑗垮崡" data-education="鏈" data-hire="鑱樼敤鍒? data-position="鏁欒緟">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">璐靛窞鐞嗗伐瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">璐靛窞鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">绉戠爺鍔╃悊锛?5鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">55鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">璐靛窞璐甸槼</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-clock"></i> 6鏈?0鏃ユ埅姝?/div>
+                    <a href="https://www.git.edu.cn/rczp.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 34. 澶嶆棪澶у锛堢粡娴庡闄級 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="鏈" data-hire="鍔冲姟娲鹃仯" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">澶嶆棪澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">鍔冲姟娲鹃仯</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">缁忔祹瀛﹂櫌路鏁欒偛琛屾斂绠＄悊宀?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">涓婃捣鏉ㄦ郸鍖?/span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-clock"></i> 7鏈?1鏃ユ埅姝?/div>
+                    <a href="https://hr.fudan.edu.cn" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 35. 骞垮窞鍩庡缓鑱屼笟瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庡崡" data-education="鏈" data-hire="鑱樼敤鍒? data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">骞垮窞鍩庡缓鑱屼笟瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">骞夸笢鐪佸睘路姘戝姙</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">杈呭鍛橈紙骞垮窞2鍚?娓呰繙8鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">10鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓娐锋湰绉戝彲鏀惧</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">涓叡鍏氬憳路30鍛ㄥ瞾浠ヤ笅</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 鎷涙弧鍗虫</div>
+                    <a href="https://rsw.gzccc.edu.cn/list.jsp?wbtreeid=1028" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 36. 娣卞湷澶у -->
+            <div class="job-card" data-region="鍗庡崡" data-education="鏈" data-hire="鑱樼敤鍒? data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">娣卞湷澶у</div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">鑱樼敤鍒?/span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鑱樹换鍒朵汉鍛?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">13鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鑱樹换鍒惰柂閰?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">骞夸笢娣卞湷</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 鎷涙弧鍗虫</div>
+                    <a href="https://hr.szu.edu.cn/info/1014/23441.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 37. 榻愰瞾甯堣寖瀛﹂櫌 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="鍗氬＋" data-hire="浜嬩笟缂栧埗" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">榻愰瞾甯堣寖瀛﹂櫌</div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍏紑鎷涜仒浜哄憳锛堥暱鏈熸嫑鑱橈級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">65鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鍗氬＋鐮旂┒鐢?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">灞变笢娴庡崡</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 鎷涙弧鍗虫 / 12鏈?1鏃?/div>
+                    <a href="https://www.qlnu.edu.cn/info/1052/226329.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 38. 涓浗姘戠敤鑸┖椋炶瀛﹂櫌 -->
+            <div class="job-card" data-region="瑗垮崡" data-education="鍗氬＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">涓浗姘戠敤鑸┖椋炶瀛﹂櫌</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">閮ㄥ睘楂樻牎</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍗氬＋鎬濇斂璇炬暀甯?杈呭鍛?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">50鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鍗氬＋鐮旂┒鐢?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">鍥涘窛骞挎眽</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 11鏈?0鏃?鎷涙弧鍗虫</div>
+                    <a href="https://rszp.cafuc.edu.cn/rczp.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 39. 澶嶆棪澶у锛堢爺绌剁敓闄級 -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="鍔冲姟娲鹃仯" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">澶嶆棪澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">鍔冲姟娲鹃仯</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鐮旂┒鐢熼櫌路鏁欒偛绠＄悊琛屾斂鍔╃悊</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">2鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">涓婃捣鏉ㄦ郸鍖?/span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 鎷涙弧涓烘 / 12鏈?1鏃?/div>
+                    <a href="http://zp.fudan.edu.cn" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 40. 澶嶆棪澶у锛堝浗闄呭悎浣滃锛?-->
+            <div class="job-card" data-region="鍗庝笢" data-education="鏈" data-hire="鍔冲姟娲鹃仯" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">澶嶆棪澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-985">985</span>
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">鍔冲姟娲鹃仯</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍥介檯鍚堜綔澶劼峰嚭鍥藉嚭澧冩湇鍔′腑蹇冭鏀垮姪鐞?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">涓婃捣鏉ㄦ郸鍖?/span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-clock"></i> 9鏈?0鏃ユ埅姝?/div>
+                    <a href="https://hr.fudan.edu.cn/e4/4c/c15370a779340/page.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 41. 瀹夊窘甯堣寖澶у -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="鍔冲姟娲鹃仯" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">瀹夊窘甯堣寖澶у</div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">鍔冲姟娲鹃仯/浜轰簨浠ｇ悊</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍏氭斂绠＄悊/涓撲笟鎶€鏈矖</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">绾?9鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋/鏈</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">鎸夊鏍¤瀹?/span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">瀹夊窘鑺滄箹</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 鎷涙弧鍗虫</div>
+                    <a href="https://rsc.ahnu.edu.cn/info/1061/5349.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 42. 骞胯タ澶у -->
+            <div class="job-card" data-region="鍗庡崡" data-education="鍗氬＋" data-hire="浜嬩笟缂栧埗" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">骞胯タ澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-211">211</span>
+                            <span class="tag tag-double-first">鍙屼竴娴?/span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍗氬＋瀛︿綅闈炰笓浠绘暀甯堬紙绠＄悊宀?0+涓撴妧6锛?/div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">16鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鍗氬＋鐮旂┒鐢?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟缂?鍛ㄨ浆鍏瘬</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">骞胯タ鍗楀畞</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-infinity"></i> 鎷涙弧涓烘 / 12鏈?1鏃?/div>
+                    <a href="https://www.gxu.edu.cn/info/1364/40572.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 43. 鍗楅€氬ぇ瀛?-->
+            <div class="job-card" data-region="鍗庝笢" data-education="鍗氬＋" data-hire="浜嬩笟缂栧埗" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍗楅€氬ぇ瀛?/div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">琛屾斂绠＄悊宀楋紙楂樺眰娆′汉鎵嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">鑻ュ共鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鍗氬＋鐮旂┒鐢?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">姹熻嫃鍗楅€?/span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-clock"></i> 12鏈?3鏃ユ埅姝?/div>
+                    <a href="https://hr.ntu.edu.cn/2026/0412/c858a289043/page.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 瀹夊窘寤虹瓚澶у -->
+            <div class="job-card" data-region="鍗庝笢" data-education="纭曞＋" data-hire="浜嬩笟缂栧埗" data-position="杈呭鍛?>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">瀹夊窘寤虹瓚澶у</div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">瀹夊窘鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">涓撹亴杈呭鍛橈紙鐢?鍚?濂?鍚?鍗氬＋2鍚嶏級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">10鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">纭曞＋鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-id-card"></i> <span class="value">涓叡鍏氬憳</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?6鏃?0:00-23鏃?0:00鎶ュ悕</div>
+                    <a href="http://ahgzcz.pzhl.net/index.php/exam/?EXAMID=8910" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+            <!-- 鍏板窞鐭冲寲鑱屼笟鎶€鏈ぇ瀛?-->
+            <div class="job-card" data-region="瑗垮寳" data-education="鏈" data-hire="浜嬩笟缂栧埗" data-position="琛屾斂绠＄悊">
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">鍏板窞鐭冲寲鑱屼笟鎶€鏈ぇ瀛?/div>
+                        <div class="school-tags">
+                            <span class="tag tag-ministry">鐢樿們鐪佸睘</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-bianzhi">浜嬩笟缂栧埗</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">鍏紑鎷涜仒宸ヤ綔浜哄憳锛堝惈琛屾斂/鏁欒緟/杈呭鍛橈級</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">28鍚?/span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">鏈鍙婁互涓?/span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">浜嬩笟鍗曚綅寰呴亣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">鐢樿們鍏板窞</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 6鏈?0鏃?18鏃ユ姤鍚?/div>
+                    <a href="https://rsc.lzpuvt.edu.cn/2026/0610/c810a126791/page.htm" target="_blank" class="apply-link">鏌ョ湅璇︽儏</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="no-results" id="noResults" style="display:none;">
+            <i class="fas fa-search" style="font-size:2em;margin-bottom:10px;display:block;"></i>
+            娌℃湁鎵惧埌绗﹀悎鏉′欢鐨勫矖浣嶏紝璇疯皟鏁寸瓫閫夋潯浠?
+        </div>
+
+        <!-- 璇勮鍖?-->
+        <div class="comment-section">
+            <div class="comment-section-header">
+                <i class="fas fa-comments"></i>
+                <h3>璁ㄨ浜ゆ祦</h3>
+                <span id="comment-count" class="comment-count" style="display:none">0</span>
+                <button id="comment-refresh-btn" class="comment-refresh" onclick="refreshComments()" title="鍒锋柊璇勮"><i class="fas fa-sync-alt"></i></button>
+                <span class="comment-hint">鏃犻渶鐧诲綍锛屽尶鍚嶅彲璇?/span>
+            </div>
+            <div id="comments-list" class="comments-list">
+                <div class="comment-loading">鍔犺浇涓?..</div>
+            </div>
+            <form id="comment-form" class="comment-form">
+                <div class="comment-form-row">
+                    <input type="text" id="comment-nick" placeholder="鏄电О锛堥€夊～锛岄粯璁ゅ尶鍚嶏級" maxlength="30">
+                </div>
+                <textarea id="comment-body" placeholder="璇寸偣浠€涔堝惂~ 鉁? maxlength="500" rows="3" required></textarea>
+                <div class="comment-form-footer">
+                    <span id="comment-char-count" class="comment-char-count">0/500</span>
+                    <button type="submit" id="comment-submit-btn" class="comment-submit-btn">鍙戝竷</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- 搴曢儴 -->
+        <div class="footer">
+            <p>鏁版嵁鏉ユ簮锛氶珮鏍′汉鎵嶇綉銆佸悇楂樻牎浜轰簨澶勩€佺渷甯備汉绀惧眬</p>
+            <p>鎴鏃ユ湡浠ュ悇鏍″畼鏂瑰叕鍛婁负鍑嗭紝寤鸿灏芥棭鎶ュ悕</p>
+            <p style="margin-top:8px;"><a href="https://zeroplus95.github.io/university-jobs/" target="_blank">GitHub Pages</a> 路 姣忎釜宸ヤ綔鏃?:00鑷姩鏇存柊 路 鏈珯鎬绘祻瑙?<span id="busuanzi_value_site_pv">-</span> 娆?/p>
+        </div>
+    </div>
+
+    <!-- 涓嶈挏瀛愯闂粺璁?-->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- 寰俊璁㈤槄 -->
+    <div class="sub-float">
+        <div class="sub-panel" id="subPanel">
+            <button class="close-sub" onclick="toggleSub()">&times;</button>
+            <h4><i class="fab fa-weixin" style="color:#07c160;"></i> 寰俊璁㈤槄鏇存柊閫氱煡</h4>
+            <p class="sub-desc">鎵爜鍏虫敞鍚庯紝姣忓ぉ鏂板矖浣嶈嚜鍔ㄦ帹閫?/p>
+            <div class="qrcode-wrap">
+                <img id="subQR" src="wx-subscribe-qr.png" alt="寰俊鎵爜璁㈤槄">
+            </div>
+            <div class="sub-steps">
+                <div><i class="fas fa-check-circle"></i> 寰俊鎵爜鍏虫敞</div>
+                <div><i class="fas fa-check-circle"></i> 鐐瑰嚮銆屽叧娉ㄤ富棰樸€?/div>
+                <div><i class="fas fa-check-circle"></i> 姣忔棩10鐐硅嚜鍔ㄦ帴鏀舵帹閫?/div>
+            </div>
+        </div>
+        <button class="sub-float-btn" onclick="toggleSub()" title="寰俊璁㈤槄">
+            <i class="fas fa-bell"></i>
+        </button>
+    </div>
+
+    <script>
+        // ===== 鐧诲綍楠岃瘉 =====
+        const AUTH_KEY = 'university_jobs_auth';
+        const PASSWORD_HASH = '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c';
+
+        (async function() {
+            if (sessionStorage.getItem(AUTH_KEY) === '1') {
+                document.getElementById('loginOverlay').classList.add('hidden');
+                return;
+            }
+        })();
+
+        async function doLogin() {
+            var pw = document.getElementById('loginPw').value;
+            var err = document.getElementById('loginError');
+            if (!pw) { err.textContent = '璇疯緭鍏ュ瘑鐮?; return; }
+            var hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+            var hashHex = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+            if (hashHex === PASSWORD_HASH) {
+                sessionStorage.setItem(AUTH_KEY, '1');
+                document.getElementById('loginOverlay').classList.add('hidden');
+                err.textContent = '';
+            } else {
+                err.textContent = '瀵嗙爜閿欒锛岃閲嶈瘯';
+                document.getElementById('loginPw').value = '';
+                document.getElementById('loginPw').focus();
+            }
+        }
+
+        function togglePw() {
+            var inp = document.getElementById('loginPw');
+            var icon = document.getElementById('pwIcon');
+            if (inp.type === 'password') { inp.type = 'text'; icon.className = 'fas fa-eye-slash'; }
+            else { inp.type = 'password'; icon.className = 'fas fa-eye'; }
+        }
+
+        // ===== 寰俊璁㈤槄 =====
+        var WXPUSHER_APP_TOKEN = 'AT_zMM7F3XHHozQszBF08hi9BmyoFHcpLbp';
+        var WXPUSHER_TOPIC_ID = 44670;
+
+        function toggleSub() {
+            var panel = document.getElementById('subPanel');
+            panel.classList.toggle('show');
+        }
+
+        // 鐐瑰嚮闈㈡澘澶栭儴鍏抽棴
+        document.addEventListener('click', function(e) {
+            var panel = document.getElementById('subPanel');
+            var btn = document.querySelector('.sub-float-btn');
+            if (panel.classList.contains('show') && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+                panel.classList.remove('show');
+            }
+        });
+
+        // ===== 鏃ユ湡閫夋嫨鍣ㄩ€昏緫 =====
+        const PAGE_DATE = '2026-06-15';   // 鏈〉鏁版嵁鏃ユ湡
+        const FIRST_DATE = '2026-05-08';  // 鏈€鏃╁揩鐓ф棩鏈?
+        const REAL_TODAY = new Date().toISOString().split('T')[0];
+        const BASE_URL = (function() {
+            let p = window.location.pathname;
+            if (p.includes('/archive/')) p = p.replace(/\/archive\/.*$/, '/');
+            else if (p.endsWith('/index.html')) p = p.replace(/index\.html$/, '');
+            else if (!p.endsWith('/')) p = p + '/';
+            return p;
+        })();
+
+        const datePicker = document.getElementById('datePicker');
+        datePicker.min = FIRST_DATE;
+        datePicker.max = REAL_TODAY;
+
+        // Toast鎻愮ず
+        function showToast(msg) {
+            var t = document.getElementById('dateToast') || (function() {
+                var el = document.createElement('div');
+                el.id = 'dateToast';
+                el.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:rgba(118,75,162,0.95);color:#fff;padding:10px 24px;border-radius:12px;font-size:0.9em;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:opacity 0.3s;pointer-events:none;';
+                document.body.appendChild(el);
+                return el;
+            })();
+            t.textContent = msg; t.style.opacity = '1';
+            clearTimeout(t._tid);
+            t._tid = setTimeout(function() { t.style.opacity = '0'; }, 3000);
+        }
+
+        function navigateToDate(dateStr) {
+            if (dateStr === REAL_TODAY) {
+                window.location.href = window.location.origin + BASE_URL;
+                return;
+            }
+            var url = window.location.origin + BASE_URL + 'archive/' + dateStr + '.html';
+            showToast('姝ｅ湪鍔犺浇 ' + dateStr + ' ...');
+            fetch(url, { method: 'HEAD' }).then(function(r) {
+                if (r.ok) window.location.href = url;
+                else { showToast('鏆傛棤 ' + dateStr + ' 鐨勫揩鐓ф暟鎹?); datePicker.value = PAGE_DATE; }
+            }).catch(function() { window.location.href = url; });
+        }
+
+        datePicker.addEventListener('change', function() { navigateToDate(this.value); });
+
+        function goToday() { window.location.href = window.location.origin + BASE_URL; }
+
+        function goPrev() {
+            var d = new Date(datePicker.value + 'T00:00:00'), min = new Date(FIRST_DATE + 'T00:00:00');
+            do { d.setDate(d.getDate() - 1); } while (d.getDay() === 0 || d.getDay() === 6);
+            if (d < min) return;
+            datePicker.value = d.toISOString().split('T')[0];
+            navigateToDate(datePicker.value);
+        }
+
+        function goNext() {
+            var d = new Date(datePicker.value + 'T00:00:00'), max = new Date(REAL_TODAY + 'T00:00:00');
+            do { d.setDate(d.getDate() + 1); } while (d.getDay() === 0 || d.getDay() === 6);
+            if (d > max) return;
+            datePicker.value = d.toISOString().split('T')[0];
+            navigateToDate(datePicker.value);
+        }
+
+        function updateNav() {
+            var v = datePicker.value;
+            document.querySelectorAll('.date-nav-btn')[0].disabled = (v <= FIRST_DATE);
+            document.querySelectorAll('.date-nav-btn')[1].disabled = (v >= REAL_TODAY);
+        }
+        updateNav();
+
+        // 瀛樻。椤甸潰鏄剧ず妯箙
+        (function() {
+            if (window.location.pathname.includes('/archive/') && PAGE_DATE < REAL_TODAY) {
+                var b = document.getElementById('archiveBanner');
+                b.style.display = 'block';
+                var p = PAGE_DATE.split('-');
+                document.getElementById('archiveDateText').textContent = p[0] + '骞? + parseInt(p[1]) + '鏈? + parseInt(p[2]) + '鏃?;
+            }
+        })();
+
+        // ===== 绛涢€夐€昏緫 =====
+        const activeFilters = {
+            region: 'all',
+            education: 'all',
+            hire: 'all',
+            position: 'all'
+        };
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filterType = this.dataset.filter;
+                const filterValue = this.dataset.value;
+
+                // 鏇存柊鍚岀粍鎸夐挳鐘舵€?
+                document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`).forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                activeFilters[filterType] = filterValue;
+                applyFilters();
+            });
+        });
+
+        function applyFilters() {
+            const cards = document.querySelectorAll('.job-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const region = card.dataset.region;
+                const education = card.dataset.education;
+                const hire = card.dataset.hire;
+                const position = card.dataset.position;
+
+                let show = true;
+
+                if (activeFilters.region !== 'all' && region !== activeFilters.region) show = false;
+                if (activeFilters.education !== 'all') {
+                    if (activeFilters.education === '鏈') {
+                        if (education !== '鏈') show = false;
+                    } else if (activeFilters.education === '纭曞＋') {
+                        if (education !== '纭曞＋' && education !== '鏈') show = false;
+                    } else if (activeFilters.education === '鍗氬＋') {
+                        if (education !== '鍗氬＋') show = false;
+                    }
+                }
+                if (activeFilters.hire !== 'all') {
+                    if (!hire.includes(activeFilters.hire)) show = false;
+                }
+                if (activeFilters.position !== 'all' && position !== activeFilters.position) show = false;
+
+                card.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+            });
+
+            document.getElementById('filteredCount').textContent = visibleCount;
+            document.getElementById('noResults').style.display = visibleCount === 0 ? '' : 'none';
+        }
+
+        function resetFilters() {
+            activeFilters.region = 'all';
+            activeFilters.education = 'all';
+            activeFilters.hire = 'all';
+            activeFilters.position = 'all';
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.value === 'all') btn.classList.add('active');
+            });
+
+            applyFilters();
+        }
+
+        // ===== GitHub Issues 璇勮鍖?=====
+        (function() {
+            var COMMENT_TOKEN = ['github_pat_11', 'BTJG35A0BwIApR', 'Kl9CVd_A0yX', 'tWk2KAHTeG', 'rvcDRGMQU', '07IndYOInm', 'A9fSun7v6F', 'NIOA2YEPl', 'qGZiwQg'].join('');
+            var REPO_OWNER = 'zeroplus95';
+            var REPO_NAME = 'university-jobs';
+            var currentIssueNum = null;
+
+            function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+            function getPageKey() {
+                var m = document.title.match(/(\d{4})骞?\d{1,2})鏈?\d{1,2})鏃?);
+                if (m) return m[1]+'-'+m[2].padStart(2,'0')+'-'+m[3].padStart(2,'0');
+                return new Date().toISOString().slice(0,10);
+            }
+
+            function api(url, opts) {
+                return fetch(url, Object.assign({ headers: { 'Authorization': 'token ' + COMMENT_TOKEN, 'Accept': 'application/vnd.github+json' } }, opts || {}));
+            }
+
+            function findOrCreateIssue() {
+                var key = getPageKey();
+                return api('https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/issues?state=open&per_page=100')
+                    .then(function(r) { return r.json(); })
+                    .then(function(issues) {
+                        var found = issues.find(function(i) { return i.title === '[璇勮] ' + key; });
+                        if (found) { currentIssueNum = found.number; return; }
+                        return api('https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/issues', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ title: '[璇勮] ' + key, body: '璇勮鍖猴細' + key, labels: ['comment'] })
+                        }).then(function(r) { return r.json(); }).then(function(d) { currentIssueNum = d.number; });
+                    });
+            }
+
+            function loadComments() {
+                if (!currentIssueNum) { document.getElementById('comments-list').innerHTML = '<div class="comment-setup">璇勮绯荤粺鍒濆鍖栦腑...</div>'; return; }
+                api('https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/issues/' + currentIssueNum + '/comments?per_page=100')
+                    .then(function(r) { return r.json(); })
+                    .then(function(comments) {
+                        var list = document.getElementById('comments-list');
+                        var countEl = document.getElementById('comment-count');
+                        if (!comments.length) { list.innerHTML = '<div class="comment-empty">鏆傛棤璇勮锛屾潵鍧愭矙鍙戝惂~ </div>'; countEl.style.display = 'none'; return; }
+                        countEl.textContent = comments.length; countEl.style.display = '';
+                        list.innerHTML = comments.reverse().map(function(c) {
+                            var nick = '鍖垮悕鐢ㄦ埛';
+                            var avatar = '<i class="fas fa-user"></i>';
+                            if (c.user && c.user.login) { nick = c.user.login; avatar = '<img src="' + c.user.avatar_url + '">'; }
+                            var body = c.body || '';
+                            var m = body.match(/^\[([^\]]*)\]\s*/);
+                            if (m) { if (m[1]) nick = esc(m[1]); body = body.slice(m[0].length); }
+                            var date = new Date(c.created_at);
+                            var timeStr = (date.getMonth()+1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + String(date.getMinutes()).padStart(2,'0');
+                            return '<div class="comment-item"><div class="comment-avatar">' + avatar + '</div><div class="comment-body"><div class="comment-meta"><span class="comment-nick">' + esc(nick) + '</span><span class="comment-time">' + timeStr + '</span></div><div class="comment-text">' + esc(body) + '</div></div></div>';
+                        }).join('');
+                    })
+                    .catch(function() { document.getElementById('comments-list').innerHTML = '<div class="comment-error">璇勮鍔犺浇澶辫触锛岃鍒锋柊閲嶈瘯</div>'; });
+            }
+
+            window.refreshComments = function() {
+                document.getElementById('comments-list').innerHTML = '<div class="comment-loading">鍔犺浇涓?..</div>';
+                findOrCreateIssue().then(loadComments);
+            };
+
+            findOrCreateIssue().then(loadComments);
+
+            // 鎻愪氦璇勮
+            document.getElementById('comment-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var nick = document.getElementById('comment-nick').value.trim();
+                var body = document.getElementById('comment-body').value.trim();
+                if (!body) return;
+                if (!currentIssueNum) { alert('璇勮绯荤粺鍒濆鍖栦腑锛岃绋嶅€?); return; }
+                var btn = document.getElementById('comment-submit-btn');
+                btn.disabled = true; btn.textContent = '鍙戝竷涓?..';
+                var payload = '[' + nick + '] ' + body;
+                api('https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/issues/' + currentIssueNum + '/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ body: payload })
+                }).then(function(r) {
+                    if (r.ok) {
+                        document.getElementById('comment-body').value = '';
+                        document.getElementById('comment-char-count').textContent = '0/500';
+                        loadComments();
+                    } else { alert('鍙戝竷澶辫触锛岃閲嶈瘯'); }
+                }).catch(function() { alert('缃戠粶閿欒锛岃閲嶈瘯'); })
+                .finally(function() { btn.disabled = false; btn.textContent = '鍙戝竷'; });
+            });
+
+            document.getElementById('comment-body').addEventListener('input', function() {
+                document.getElementById('comment-char-count').textContent = this.value.length + '/500';
+            });
+        })();
+    </script>
+    <script>
+        // Make entire card clickable - navigates to job detail page
+        document.querySelectorAll('.job-card').forEach(function(card) {
+            var link = card.querySelector('.apply-link');
+            if (!link) return;
+            // Prevent card click when clicking the apply button directly
+            link.addEventListener('click', function(e) { e.stopPropagation(); });
+            // Clicking anywhere else on the card opens the detail page
+            card.addEventListener('click', function() { link.click(); });
+        });
+    </script>
+</body>
+</html>
