@@ -622,7 +622,7 @@
         <div class="header">
             <h1><i class="fas fa-graduation-cap"></i> 高校行政岗招聘信息</h1>
             <p>每日更新 · 只展示仍在报名中的岗位</p>
-            <div class="update-time"><i class="fas fa-clock"></i> 更新时间：2026年7月22日 11:41</div>
+            <div class="update-time"><i class="fas fa-clock"></i> 更新时间：2026年7月22日 11:41（补充一线城市985岗）</div>
 
         <!-- 日期选择器 -->
         <div class="date-picker-bar">
@@ -643,15 +643,15 @@
         <!-- 统计栏 -->
         <div class="stats-bar">
             <div class="stat-item">
-                <span class="stat-num" id="totalCount">61</span>
+                <span class="stat-num" id="totalCount">66</span>
                 <span class="stat-label">在招岗位</span>
             </div>
             <div class="stat-item">
-                <span class="stat-num" id="urgentCount" style="color:#e74c3c">10</span>
+                <span class="stat-num" id="urgentCount" style="color:#e74c3c">11</span>
                 <span class="stat-label">即将截止</span>
             </div>
             <div class="stat-item">
-                <span class="stat-num" id="newCount" style="color:#ffa502">12</span>
+                <span class="stat-num" id="newCount" style="color:#ffa502">17</span>
                 <span class="stat-label">本期新增</span>
             </div>
             <div class="stat-item">
@@ -704,13 +704,143 @@
                 <button class="filter-btn" data-filter="position" data-value="教辅">教辅</button>
             </div>
             <div class="filter-row" style="justify-content:space-between;">
-                <div class="filter-result">筛选结果：<span id="filteredCount">61</span> 个岗位</div>
+                <div class="filter-result">筛选结果：<span id="filteredCount">66</span> 个岗位</div>
                 <button class="reset-btn" onclick="resetFilters()"><i class="fas fa-redo"></i> 重置筛选</button>
             </div>
         </div>
 
         <!-- 岗位卡片 -->
         <div class="cards-grid" id="cardsGrid">
+            <div class="job-card" data-region="华北" data-education="硕士" data-hire="聘用制" data-position="行政管理" style="cursor:pointer" onclick="window.open('https://jobs.tsinghua.edu.cn/project/qhdx/pages/recruit_new/?FM_SYS_ID=qhdx#/post/detail/77C75B55BCD549EC9BC420045259CD0E','_blank')">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">清华大学</div>
+                        <div class="school-tags">
+                            <span class="tag tag-public">985/双一流</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">聘用制</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">人事处人事综合管理岗1名</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">校聘/聘用制</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">北京</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 8月7日截止</div>
+                    <a href="https://jobs.tsinghua.edu.cn/project/qhdx/pages/recruit_new/?FM_SYS_ID=qhdx#/post/detail/77C75B55BCD549EC9BC420045259CD0E" target="_blank" class="apply-link" onclick="event.stopPropagation()">查看详情</a>
+                </div>
+            </div>
+
+            <div class="job-card" data-region="华东" data-education="硕士" data-hire="聘用制" data-position="辅导员" style="cursor:pointer" onclick="window.open('https://www.fenbi.com/page/exam-information-detail/467672224518144','_blank')">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">复旦大学</div>
+                        <div class="school-tags">
+                            <span class="tag tag-public">985/双一流</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">聘用制</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">附属华东医院学生工作专职辅导员1名</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">聘用制</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">上海</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 7月28日截止</div>
+                    <a href="https://www.fenbi.com/page/exam-information-detail/467672224518144" target="_blank" class="apply-link" onclick="event.stopPropagation()">查看详情</a>
+                </div>
+            </div>
+
+            <div class="job-card" data-region="华东" data-education="硕士" data-hire="劳务派遣" data-position="行政管理" style="cursor:pointer" onclick="window.open('https://www.fenbi.com/page/exam-information-detail/467652156873728','_blank')">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">同济大学</div>
+                        <div class="school-tags">
+                            <span class="tag tag-public">985/双一流</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">劳务派遣</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">中意工程创新学院行政管理岗1名</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">1名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">硕士</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">劳务派遣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">上海</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-normal"><i class="fas fa-clock"></i> 8月14日截止</div>
+                    <a href="https://www.fenbi.com/page/exam-information-detail/467652156873728" target="_blank" class="apply-link" onclick="event.stopPropagation()">查看详情</a>
+                </div>
+            </div>
+
+            <div class="job-card" data-region="华南" data-education="本科" data-hire="聘用制" data-position="行政管理" style="cursor:pointer" onclick="window.open('https://zp.rs.scut.edu.cn/recruitWeb/a/zp/news/recruitPostInfo?postSeries=contract&postId=1488220687112863744','_blank')">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">华南理工大学</div>
+                        <div class="school-tags">
+                            <span class="tag tag-public">985/双一流</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-pinyong">聘用制</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">造纸国家工程研究中心行政管理岗3名</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">3名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">本科</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">合同工/聘用制</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">广州</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-long"><i class="fas fa-clock"></i> 2026年12月31日截止</div>
+                    <a href="https://zp.rs.scut.edu.cn/recruitWeb/a/zp/news/recruitPostInfo?postSeries=contract&postId=1488220687112863744" target="_blank" class="apply-link" onclick="event.stopPropagation()">查看详情</a>
+                </div>
+            </div>
+
+            <div class="job-card" data-region="西北" data-education="本科" data-hire="劳务派遣" data-position="行政管理" style="cursor:pointer" onclick="window.open('https://m.yingjiesheng.com/job-008-015-394.html','_blank')">
+                <div class="new-badge">NEW</div>
+                <div class="card-header">
+                    <div>
+                        <div class="school-name">西安交通大学</div>
+                        <div class="school-tags">
+                            <span class="tag tag-public">985/双一流</span>
+                        </div>
+                    </div>
+                    <span class="hire-type-badge badge-laowu">劳务派遣</span>
+                </div>
+                <div class="card-body">
+                    <div class="position-name">人文学院综合行政事务辅助岗2名</div>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-users"></i> <span class="value">2名</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span class="value">本科</span></div>
+                        <div class="info-item"><i class="fas fa-yen-sign"></i> <span class="value">劳务派遣</span></div>
+                        <div class="info-item"><i class="fas fa-building"></i> <span class="value">西安</span></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="deadline deadline-urgent"><i class="fas fa-exclamation-triangle"></i> 7月24日截止</div>
+                    <a href="https://m.yingjiesheng.com/job-008-015-394.html" target="_blank" class="apply-link" onclick="event.stopPropagation()">查看详情</a>
+                </div>
+            </div>
+
             <div class="job-card" data-region="华南" data-education="硕士" data-hire="事业编制" data-position="辅导员" style="cursor:pointer" onclick="window.open('http://www.gzmtu.edu.cn/info/1019/21033.htm','_blank')">
                 <div class="new-badge">NEW</div>
                 <div class="card-header">
